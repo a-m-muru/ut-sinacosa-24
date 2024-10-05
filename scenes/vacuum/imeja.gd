@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Vacuum extends CharacterBody2D
 
 enum States {FROZEN, MOVABLE, SPRINTING}
 
@@ -12,9 +12,10 @@ const DISTANCE_STAR_CURVE := preload("res://scenes/vacuum/distance_star_curve.tr
 
 @onready var collection_area: Area2D = $"CollectionArea"
 @onready var vacuum_suck_shape: CircleShape2D = $CollectionArea/CollisionShape2D.shape
+@onready var sprite: Sprite2D = $Sprite
 
 var move_speed := MOVE_SPEED
-var _affected_stars: Array[Star] = []
+var _affected_stars: Array[SpaceFloater] = []
 var state := States.MOVABLE
 
 
@@ -49,12 +50,16 @@ func _physics_process(delta: float) -> void:
 
 
 func _star_entered(star: Area2D) -> void:
+	if not star is SpaceFloater:
+		return
 	if star.is_queued_for_deletion():
 		return
 	_affected_stars.append(star)
 
 
-func _star_exited(star: Area2D) -> void:
+func _star_exited(star: SpaceFloater) -> void:
+	if star.scale.x > 1:
+		Region.stellar_explosion(star, roundi(star.scale.x / 0.22), 70, 7)
 	if star in _affected_stars:
 		_affected_stars.erase(star)
 
@@ -69,6 +74,9 @@ func _free_star(star: Star) -> void:
 
 func _affect_stars(delta: float) -> void:
 	for star in _affected_stars:
+		if not is_instance_valid(star):
+			_clean_affected()
+			return
 		var star_distance := star.global_position.distance_to(global_position)
 		star_distance /= vacuum_suck_shape.radius
 		#draw.connect(func():
@@ -88,3 +96,7 @@ func _affect_stars(delta: float) -> void:
 			_free_star(star)
 			break
 	#queue_redraw()
+
+
+func _clean_affected() -> void:
+	_affected_stars = _affected_stars.filter(func(a: SpaceFloater) -> bool: return is_instance_valid(a))
