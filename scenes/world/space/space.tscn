@@ -10,13 +10,17 @@
 
 [node name="Space" type="Node2D"]
 
-[node name="SmallerCutscene" type="Node" parent="."]
+[node name="SmallerCutscene" type="Node" parent="." node_paths=PackedStringArray("current_vacuum", "camera", "regions", "para_layers")]
 script = ExtResource("1_80ntu")
+current_vacuum = NodePath("../Vacuum")
+camera = NodePath("../Vacuum/Camera2D")
+regions = NodePath("../Regions")
+para_layers = [NodePath("../SpaceLayer"), NodePath("../StarLayer"), NodePath("../MistLayer"), NodePath("../MistLayer2")]
 
 [node name="SpaceLayer" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.065, 0.065)
 repeat_size = Vector2(3840, 2160)
-repeat_times = 3
+repeat_times = 6
 
 [node name="Space" type="Sprite2D" parent="SpaceLayer"]
 position = Vector2(-845, -320)
@@ -33,7 +37,7 @@ script = ExtResource("2_0wrbr")
 scroll_scale = Vector2(0.235, 0.235)
 repeat_size = Vector2(3840, 2160)
 autoscroll = Vector2(5.81, 2.34)
-repeat_times = 3
+repeat_times = 6
 
 [node name="Space" type="Sprite2D" parent="MistLayer"]
 position = Vector2(-845, -320)
@@ -44,7 +48,7 @@ scroll_scale = Vector2(0.235, 0.305)
 scroll_offset = Vector2(1800, 600)
 repeat_size = Vector2(3840, 2160)
 autoscroll = Vector2(24, 2.34)
-repeat_times = 3
+repeat_times = 6
 
 [node name="Space" type="Sprite2D" parent="MistLayer2"]
 modulate = Color(0.617301, 0.618394, 0.797638, 0.697)

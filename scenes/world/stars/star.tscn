@@ -40,6 +40,8 @@ collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_4e6bf")
+scale_range = Vector2(0.4, 1.1)
+rotation_range = Vector2(-3.142, 3.142)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_q473c")
