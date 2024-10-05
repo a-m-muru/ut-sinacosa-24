@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7r8jysinncjw"]
+
+[ext_resource type="Script" path="res://test/kosmosetolmuimejaprototyyp.gd" id="1_i731g"]
+[ext_resource type="Texture2D" uid="uid://vkxnp3h3862g" path="res://icon.svg" id="2_k30j3"]
+[ext_resource type="PackedScene" uid="uid://b15m1keqts6qx" path="res://scenes/vacuum/vacuum.tscn" id="2_vaby0"]
+
+[sub_resource type="Environment" id="Environment_7g3b8"]
+glow_enabled = true
+glow_strength = 1.47
+glow_bloom = 1.0
+
+[node name="Kosmosetolmuimejaprototyyp" type="Node2D"]
+script = ExtResource("1_i731g")
+
+[node name="Vacuum" parent="." instance=ExtResource("2_vaby0")]
+
+[node name="Camera2D" type="Camera2D" parent="Vacuum"]
+
+[node name="StarParent" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.11, 0.11)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(0.122252, 0.122252, 0.122252, 1)
+scale = Vector2(197.484, 99.25)
+texture = ExtResource("2_k30j3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7g3b8")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.907942, 0.907942, 0.907942, 1)

@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://62kkks72qcmu"]
+
+[ext_resource type="Texture2D" uid="uid://vkxnp3h3862g" path="res://icon.svg" id="1_wmxbm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7f7vg"]
+font_size = 481
+
+[sub_resource type="GDScript" id="GDScript_21vod"]
+resource_name = "asdasdsadsadas"
+script/source = "extends Sprite2D
+
+const asadasdsa := preload(\"res://test/asdasdasdas.tscn\")
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		for i in 100:
+			var a := asadasdsa.instantiate()
+			a.global_position = event.global_position
+			get_parent().add_child(a)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var ip := Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
+	position += ip * 120 * delta
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_josly"]
+size = Vector2(1342, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ny6gj"]
+size = Vector2(26, 1104)
+
+[sub_resource type="GDScript" id="GDScript_x0r57"]
+resource_name = "asdasdasdf"
+script/source = "extends AnimatableBody2D
+
+
+func _process(delta: float) -> void:
+	rotation += delta * 10
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mu3sw"]
+size = Vector2(662, 20)
+
+[node name="Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "tere"
+label_settings = SubResource("LabelSettings_7f7vg")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(282, 283)
+texture = ExtResource("1_wmxbm")
+script = SubResource("GDScript_21vod")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(548, 591)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_josly")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-530, -491)
+shape = SubResource("RectangleShape2D_ny6gj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(594, -492)
+shape = SubResource("RectangleShape2D_ny6gj")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(566, 292)
+script = SubResource("GDScript_x0r57")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_mu3sw")
+
+[node name="Icon2" type="Sprite2D" parent="AnimatableBody2D/CollisionShape2D4"]
+position = Vector2(1, -3)
+scale = Vector2(5.20313, 0.125)
+texture = ExtResource("1_wmxbm")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_mu3sw")
+
+[node name="Icon3" type="Sprite2D" parent="AnimatableBody2D/CollisionShape2D5"]
+position = Vector2(15, 2)
+rotation = -1.5708
+scale = Vector2(0.1875, 4.60938)
+texture = ExtResource("1_wmxbm")
