@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bj3u8hb0ij5b"]
+[gd_scene load_steps=12 format=3 uid="uid://bj3u8hb0ij5b"]
 
 [ext_resource type="Script" path="res://scenes/world/stars/star.gd" id="1_4e6bf"]
 [ext_resource type="Texture2D" uid="uid://b2870p4egs6wt" path="res://scenes/world/stars/background.circle.png" id="2_th7u1"]
@@ -12,11 +12,25 @@
 blend_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_pv61c"]
-offsets = PackedFloat32Array(0, 0.307692, 0.626781, 1)
-colors = PackedColorArray(0.0137742, 0.320911, 0.43335, 1, 0.289734, 0.463664, 0.534517, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0.210826, 0.626781, 1)
+colors = PackedColorArray(0.289734, 0.463664, 0.534517, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_olo53"]
 gradient = SubResource("Gradient_pv61c")
+width = 128
+height = 128
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_j1m0x"]
+offsets = PackedFloat32Array(0, 0.467236, 1)
+colors = PackedColorArray(0.120672, 0.217041, 0.256004, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qmhqu"]
+gradient = SubResource("Gradient_j1m0x")
+width = 128
+height = 128
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -42,7 +56,7 @@ texture = SubResource("GradientTexture2D_olo53")
 
 [node name="Face" type="Node2D" parent="."]
 
-[node name="Background_small" type="Sprite2D" parent="Face"]
+[node name="Background" type="Sprite2D" parent="Face"]
 texture = ExtResource("3_ihlt0")
 
 [node name="Mouth" type="Sprite2D" parent="Face"]
@@ -52,6 +66,10 @@ texture = ExtResource("4_88fv7")
 [node name="Eyes" type="Sprite2D" parent="Face"]
 position = Vector2(1, -3)
 texture = ExtResource("5_p6y6w")
+
+[node name="Glow2" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_rtqr8")
+texture = SubResource("GradientTexture2D_qmhqu")
 
 [node name="BlinkTimer" type="Timer" parent="."]
 wait_time = 0.1
