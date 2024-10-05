@@ -14,6 +14,7 @@ func _ready() -> void:
 		GLOBAL.challenger = null
 		queue_free()
 		return
+	GLOBAL.challenger = self
 	timer.timeout.connect(func() -> void: time += 1; display())
 	display()
 
@@ -35,4 +36,4 @@ func display() -> void:
 		format.push_front(hours)
 	timer_label.text = timer_label.text % format
 	
-	score_label.text = "%10.1f" % score
+	score_label.text = "%010.1f" % score
