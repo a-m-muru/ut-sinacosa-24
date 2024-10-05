@@ -18,10 +18,12 @@ const BODY_TEXTURES := [
 
 @onready var body: Sprite2D = $Body
 @onready var eyes: Sprite2D = $Eyes
+@onready var blink_timer: Timer = $BlinkTimer
 
 
 func _ready() -> void:
 	super()
+	blink_timer.timeout.connect(_blink_timer_timeout)
 	var idx := randi() % EYE_TEXTURES.size()
 	body.texture = BODY_TEXTURES[idx]
 	eyes.texture = EYE_TEXTURES[idx]
@@ -34,3 +36,11 @@ func vacuum_collision_response(vacuum: Vacuum) -> void:
 	if absf(rotation_direction) >= 30:
 		Region.stellar_explosion(self, 60, 30, 16, Vector2(-6, 6))
 		queue_free()
+
+
+func _blink_timer_timeout() -> void:
+	blink_timer.wait_time = 16 * randf()
+	var tw := create_tween()
+	tw.tween_property(eyes, "scale:y", 0.0, 0.2)
+	tw.tween_interval(0.8)
+	tw.tween_property(eyes, "scale:y", 1.0, 0.2)

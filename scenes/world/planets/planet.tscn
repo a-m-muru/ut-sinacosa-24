@@ -35,3 +35,7 @@ texture = ExtResource("2_ts2bl")
 [node name="Eyes" type="Sprite2D" parent="."]
 position = Vector2(0, -10.5)
 texture = ExtResource("3_x108n")
+
+[node name="BlinkTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
