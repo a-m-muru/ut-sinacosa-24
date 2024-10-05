@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://w154fcppjdrg" path="res://scenes/world/space/mist.png" id="2_f1yad"]
 [ext_resource type="Script" path="res://scenes/world/space/regions.gd" id="2_n8axi"]
 [ext_resource type="PackedScene" uid="uid://rf32etlnquy3" path="res://scenes/pausemenu/pause_menu_layer.tscn" id="5_50a5p"]
-[ext_resource type="Theme" uid="uid://bjl70rnru4qrn" path="res://scenes/gui/main_theme.tres" id="8_gvgv6"]
+[ext_resource type="Theme" uid="uid://c8o0eqhos064x" path="res://scenes/gui/main_theme.tres" id="8_gvgv6"]
 [ext_resource type="Script" path="res://scenes/gui/ingame_menus/challenger.gd" id="8_muf33"]
 [ext_resource type="FontFile" uid="uid://cq2arlv6kofqa" path="res://scenes/gui/Montserrat-Medium.ttf" id="10_gngap"]
 [ext_resource type="FontFile" uid="uid://ck46vwy1hmbit" path="res://scenes/gui/BAD.ttf" id="11_vtgpw"]
@@ -22,12 +22,11 @@ font_size = 19
 
 [node name="Space" type="Node2D"]
 
-[node name="SmallerCutscene" type="Node" parent="." node_paths=PackedStringArray("current_vacuum", "camera", "regions", "para_layers")]
+[node name="SmallerCutscene" type="Node" parent="." node_paths=PackedStringArray("current_vacuum", "camera", "regions")]
 script = ExtResource("1_80ntu")
 current_vacuum = NodePath("../Vacuum")
 camera = NodePath("../Vacuum/Camera2D")
 regions = NodePath("../Regions")
-para_layers = [NodePath("../SpaceLayer"), NodePath("../StarLayer"), NodePath("../MistLayer"), NodePath("../MistLayer2")]
 
 [node name="SpaceLayer" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.065, 0.065)
