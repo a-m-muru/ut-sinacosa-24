@@ -35,4 +35,4 @@ func display() -> void:
 		format.push_front(hours)
 	timer_label.text = timer_label.text % format
 	
-	score_label.text = "%04.1f" % score
+	score_label.text = "%10.1f" % score
