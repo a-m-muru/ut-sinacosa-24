@@ -59,7 +59,9 @@ func _star_exited(star: Area2D) -> void:
 
 func _free_star(star: Star) -> void:
 	if not star in _affected_stars:
-		star.queue_free()
+		var tw := create_tween()
+		tw.tween_property(star, "scale", Vector2.ZERO, 0.1)
+		tw.tween_callback(star.queue_free)
 		GLOBAL.stars_vacuumed += 1
 
 
