@@ -5,7 +5,8 @@ const STARS_PER_LEVEL := 400
 var remaining_stars := {}
 var star_noise := FastNoiseLite.new()
 var stars_vacuumed := 0
-var ui_layer: CanvasLayer = null
+var ui_layer: UI
+var challenger: Challenger
 
 var zen_mode := true
 

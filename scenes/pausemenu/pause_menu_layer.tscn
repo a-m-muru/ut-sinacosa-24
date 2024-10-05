@@ -74,6 +74,7 @@ texture_normal = ExtResource("6_bc3f8")
 texture_pressed = ExtResource("7_y7ypn")
 
 [node name="Game Over panel" type="Panel" parent="."]
+visible = false
 self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0

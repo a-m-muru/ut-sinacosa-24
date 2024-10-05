@@ -1,7 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://crxjn34sk5jfm"]
+[gd_scene load_steps=22 format=3 uid="uid://crxjn34sk5jfm"]
 
-[ext_resource type="FontFile" uid="uid://cq2arlv6kofqa" path="res://scenes/gui/Montserrat-Medium.ttf" id="1_df4d5"]
-[ext_resource type="StyleBox" path="res://scenes/gui/button.tres" id="2_4xq2w"]
+[ext_resource type="Theme" uid="uid://bjl70rnru4qrn" path="res://scenes/gui/main_theme.tres" id="1_xne3j"]
 [ext_resource type="Texture2D" uid="uid://ks3dbfh64ls2" path="res://scenes/gui/title.png" id="3_j3ykq"]
 [ext_resource type="Script" path="res://scenes/gui/main_menu.gd" id="3_k5dg5"]
 [ext_resource type="Texture2D" uid="uid://d31biu5pcu7qn" path="res://scenes/gui/play_challenge_normal.png" id="4_h27nf"]
@@ -22,22 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://dwkgyyxnbbphc" path="res://scenes/gui/return_normal.png" id="19_o2mtl"]
 [ext_resource type="Texture2D" uid="uid://bf7b24ldyv58f" path="res://scenes/gui/return_pressed.png" id="20_jj5vv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upbn3"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 0)
-
-[sub_resource type="Theme" id="Theme_j7eul"]
-Button/colors/font_color = Color(1, 1, 1, 1)
-Button/colors/font_hover_color = Color(0, 0, 0, 1)
-Button/font_sizes/font_size = 50
-Button/fonts/font = ExtResource("1_df4d5")
-Button/styles/hover = SubResource("StyleBoxFlat_upbn3")
-Button/styles/normal = ExtResource("2_4xq2w")
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_slfa5"]
 blend_mode = 3
 
@@ -52,7 +35,7 @@ offset_right = 6.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_j7eul")
+theme = ExtResource("1_xne3j")
 script = ExtResource("3_k5dg5")
 
 [node name="Background" type="TextureRect" parent="."]

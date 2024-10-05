@@ -30,6 +30,8 @@ func create_region(region_pos: Vector2) -> void:
 		new_region.global_position = Region.SIZE * region_pos
 		new_region.desired_stars = clampf((GLOBAL.STARS_PER_LEVEL - GLOBAL.stars_vacuumed), 0, 99)
 		add_child(new_region)
+		var tw := create_tween()
+		tw.tween_property(new_region, "modulate:a", 1.0, 1.0).from(0.0)
 
 
 func _process(delta: float) -> void:
@@ -49,4 +51,13 @@ func _process_faraway_regions() -> void:
 			region.queue_free()
 			keys_to_erase.append(region_pos)
 	for region_pos in keys_to_erase:
+		by_position.erase(region_pos)
+
+
+func destroy_children() -> void:
+	var keys_to_erase := []
+	for region_pos: Vector2 in by_position.keys():
+		var region: Region = by_position[region_pos]
+		region.queue_free()
+	for region_pos: Vector2 in by_position.keys():
 		by_position.erase(region_pos)

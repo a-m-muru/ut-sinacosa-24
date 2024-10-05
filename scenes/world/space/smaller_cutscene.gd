@@ -17,6 +17,7 @@ func _input(event: InputEvent) -> void:
 
 
 func play() -> void:
+	regions.destroy_children()
 	var tw := create_tween()
 	current_vacuum.state = Vacuum.States.FROZEN
 	var new_vacuum := VACUUM.instantiate()
@@ -33,18 +34,23 @@ func play() -> void:
 	tw.tween_interval(1.0)
 	tw.tween_property(new_vacuum, "global_position", current_vacuum.global_position, 1.0)
 	
-	tw.tween_callback(func():
-		current_vacuum.remove_child(camera)
-		current_vacuum.queue_free()
-		current_vacuum = new_vacuum
-		regions.follow = current_vacuum
-		current_vacuum.add_child(camera)
-		tw = create_tween()
-		tw.parallel().tween_property(camera, "zoom", Vector2.ONE, 2.0)
-		tw.parallel().tween_property(current_vacuum, "scale", Vector2.ONE, 2.0)
-		for layer in para_layers:
-			layer.repeat_times /= NEW_SCALE
+	if GLOBAL.zen_mode:
 		tw.tween_callback(func():
-			current_vacuum.state = Vacuum.States.MOVABLE
+			current_vacuum.remove_child(camera)
+			current_vacuum.queue_free()
+			current_vacuum = new_vacuum
+			regions.follow = current_vacuum
+			current_vacuum.add_child(camera)
+			tw = create_tween()
+			tw.parallel().tween_property(camera, "zoom", Vector2.ONE, 2.0)
+			tw.parallel().tween_property(current_vacuum, "scale", Vector2.ONE, 2.0)
+			for layer in para_layers:
+				layer.repeat_times /= NEW_SCALE
+			tw.tween_callback(func():
+				current_vacuum.state = Vacuum.States.MOVABLE
+			)
 		)
-	)
+	else:
+		tw.tween_callback(func():
+			GLOBAL.ui_layer.call_panel(true)
+		)

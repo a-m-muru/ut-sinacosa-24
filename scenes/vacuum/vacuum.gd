@@ -98,6 +98,7 @@ func _affect_stars(delta: float) -> void:
 	for star in _affected_stars:
 		var star_distance := star.global_position.distance_squared_to(global_position)
 		if star_distance < 20:
+			add_score(star.scale.x)
 			_star_exited(star)
 			_free_star(star)
 			break
@@ -108,3 +109,9 @@ func _clean_affected() -> void:
 	var narr: Array[SpaceFloater]
 	narr.assign(_affected_stars.filter(func(a) -> bool: return is_instance_valid(a) and a is SpaceFloater))
 	_affected_stars = narr
+
+
+func add_score(amount: float) -> void:
+	if not GLOBAL.challenger:
+		return
+	GLOBAL.challenger.add_score(amount)
