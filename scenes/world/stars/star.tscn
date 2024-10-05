@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj3u8hb0ij5b"]
+
+[ext_resource type="Script" path="res://scenes/world/stars/star.gd" id="1_4e6bf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rtqr8"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_pv61c"]
+offsets = PackedFloat32Array(0, 0.307692, 0.626781, 1)
+colors = PackedColorArray(0.951, 9.73, 25.406, 1, 0.724415, 0.850194, 0.90457, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_olo53"]
+gradient = SubResource("Gradient_pv61c")
+width = 32
+height = 32
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q473c"]
+
+[node name="Star" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_4e6bf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_rtqr8")
+texture = SubResource("GradientTexture2D_olo53")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q473c")

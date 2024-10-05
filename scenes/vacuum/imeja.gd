@@ -14,7 +14,7 @@ const DISTANCE_STAR_CURVE := preload("res://scenes/vacuum/distance_star_curve.tr
 @onready var vacuum_suck_shape: CircleShape2D = $CollectionArea/CollisionShape2D.shape
 
 var move_speed := MOVE_SPEED
-var _affected_stars: Array[Area2D] = []
+var _affected_stars: Array[Star] = []
 var state := States.MOVABLE
 
 
@@ -47,12 +47,19 @@ func _physics_process(delta: float) -> void:
 
 
 func _star_entered(star: Area2D) -> void:
+	if star.is_queued_for_deletion():
+		return
 	_affected_stars.append(star)
 
 
 func _star_exited(star: Area2D) -> void:
 	if star in _affected_stars:
 		_affected_stars.erase(star)
+
+
+func _free_star(star: Star) -> void:
+	if not star in _affected_stars:
+		star.queue_free()
 
 
 func _affect_stars(delta: float) -> void:
@@ -65,9 +72,14 @@ func _affect_stars(delta: float) -> void:
 			#draw_rect(Rect2(to_local(star.global_position) + Vector2(4, 0), Vector2(4, -star.global_position.distance_to(global_position))), Color.WHITE)
 		#, CONNECT_ONE_SHOT)
 		var star_speed := DISTANCE_STAR_CURVE.sample_baked(star_distance)
-		star.global_position = star.global_position.move_toward(
-				global_position,
-				delta * star_speed * (maxf(1.0, velocity.length() * 0.01)))
+		star.global_position = (star.global_position.move_toward(global_position,
+				delta * star_speed))
 		if star_distance > 2:
 			_star_exited(star)
+	for star in _affected_stars:
+		var star_distance := star.global_position.distance_squared_to(global_position)
+		if star_distance < 20:
+			_star_exited(star)
+			_free_star(star)
+			break
 	#queue_redraw()
