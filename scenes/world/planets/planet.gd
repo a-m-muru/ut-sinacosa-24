@@ -1,5 +1,7 @@
 class_name Planet extends SpaceFloater
 
+# big floating objects that burst into small stars
+
 const EYE_TEXTURES := [
 	preload("res://scenes/world/planets/big.1.5.e.png"),
 	preload("res://scenes/world/planets/big.1.e.png"),
@@ -30,9 +32,12 @@ func _ready() -> void:
 
 
 func vacuum_collision_response(vacuum: Vacuum) -> void:
+	# knocked away from the vacuum
+	# this method is kind of broken and sometimes called way too many times
 	var away_direction := (global_position - vacuum.global_position).normalized()
 	apply_impulse(away_direction * 170.0)
 	rotation_direction *= 2.0
+	# planets spinning too fast break apart
 	if absf(rotation_direction) >= 30:
 		Region.stellar_explosion(self, 60, 30, 16, Vector2(-6, 6))
 		queue_free()
@@ -40,6 +45,7 @@ func vacuum_collision_response(vacuum: Vacuum) -> void:
 
 func _blink_timer_timeout() -> void:
 	blink_timer.wait_time = 16 * randf()
+	# blink
 	var tw := create_tween()
 	tw.tween_property(eyes, "scale:y", 0.0, 0.2)
 	tw.tween_interval(0.8)

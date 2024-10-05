@@ -155,7 +155,7 @@ text = "CREDITS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="Credits"]
+[node name="BackButton" type="TextureButton" parent="Credits"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -175,4 +175,4 @@ texture_pressed = ExtResource("20_jj5vv")
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Play_Relax Button" to="." method="_on_play_relax_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Credits Button" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="Credits/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]

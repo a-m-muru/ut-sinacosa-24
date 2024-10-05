@@ -1,5 +1,7 @@
 class_name SpaceFloater extends Area2D
 
+# parent class for things that float aimlessly in space
+
 const DECEL := 400
 
 @export var scale_range := Vector2(1, 1)

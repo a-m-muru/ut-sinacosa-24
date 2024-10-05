@@ -3,11 +3,11 @@ extends Control
 @onready var background: TextureRect = $Background
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GLOBAL.reset_counters()
 	credits.visible = false
 	if (GLOBAL.played_once):
+		# fancy different menu art
 		if (randf_range(1,5) > 3):
 			background.texture = load("res://scenes/gui/menu_background_alt.png")
 
@@ -37,5 +37,5 @@ func _on_credits_button_pressed() -> void:
 	credits.visible = true
 
 
-func _on_texture_button_pressed() -> void:
+func _on_back_button_pressed() -> void:
 	credits.visible = false

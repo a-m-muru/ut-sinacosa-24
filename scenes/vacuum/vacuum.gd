@@ -1,6 +1,12 @@
 class_name Vacuum extends CharacterBody2D
 
-enum States {FROZEN = 0b001, MOVABLE = 0b010, SPRINTING = 0b110}
+# the vacuum sucks up stars and is what the player controls
+
+enum States {
+	FROZEN = 0b001, # cannot move
+	MOVABLE = 0b010, # move
+	SPRINTING = 0b110, # move faster
+}
 
 const ACCEL := 2400
 const DECEL := 1600
@@ -49,9 +55,11 @@ func _physics_process(delta: float) -> void:
 	_affect_stars(delta)
 
 
+# triggered when a star comes close to the sucking area
 func _star_entered(star: Area2D) -> void:
 	if not star is SpaceFloater:
 		return
+	# stars are frequently deleted
 	if star.is_queued_for_deletion():
 		return
 	_affected_stars.append(star)
@@ -59,6 +67,7 @@ func _star_entered(star: Area2D) -> void:
 
 func _star_exited(floater: SpaceFloater) -> void:
 	if floater is Star:
+		# bigger stars explode into smaller ones
 		if floater.scale.x > 1:
 			Region.stellar_explosion(floater, roundi(floater.scale.x / 0.22), 70, 7)
 	if floater in _affected_stars:
@@ -66,6 +75,7 @@ func _star_exited(floater: SpaceFloater) -> void:
 
 
 func _free_star(star: SpaceFloater) -> void:
+	# do not free planets
 	if not star is Star:
 		return
 	if not star in _affected_stars:
@@ -76,16 +86,21 @@ func _free_star(star: SpaceFloater) -> void:
 
 
 func _affect_stars(delta: float) -> void:
+	# don't suck while frozen
 	if (state & States.FROZEN) != 0:
 		return
 	for star in _affected_stars:
+		# deleted stars must be removed from the list
 		if not is_instance_valid(star):
 			_clean_affected()
 			return
 		var star_distance := star.global_position.distance_to(global_position)
 		star_distance /= vacuum_suck_shape.radius
+		
+		# vacuum shouldn't effect things far away
 		if star_distance > 2:
 			_star_exited(star)
+		
 		if star is Planet:
 			star.vacuum_collision_response(self)
 			continue
@@ -97,6 +112,8 @@ func _affect_stars(delta: float) -> void:
 		var star_speed := DISTANCE_STAR_CURVE.sample_baked(star_distance)
 		star.global_position = (star.global_position.move_toward(global_position,
 				delta * star_speed * 2))
+	
+	# gobble up close enough stars
 	for star in _affected_stars:
 		var star_distance := star.global_position.distance_squared_to(global_position)
 		if star_distance < 20:
@@ -107,6 +124,7 @@ func _affect_stars(delta: float) -> void:
 	#queue_redraw()
 
 
+# remove invalid stars from the list
 func _clean_affected() -> void:
 	var narr: Array[SpaceFloater]
 	narr.assign(_affected_stars.filter(func(a) -> bool: return is_instance_valid(a) and a is SpaceFloater))

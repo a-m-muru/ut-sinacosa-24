@@ -6,7 +6,6 @@ class_name UI extends CanvasLayer
 @onready var final_score_label: Label = $"Game Over panel/Final Score Label"
 
 
-
 func _ready() -> void:
 	GLOBAL.ui_layer = self
 	game_over_panel.visible = false
@@ -22,9 +21,10 @@ func call_panel(gameover = false) -> void:
 	if (!game_over_panel.visible):
 		if (gameover): #If the game ends
 			game_over_panel.visible = true
-			final_score_label.add_theme_font_size_override("font_size", 72)
 			final_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed) + "/" + str(GLOBAL.STARS_PER_LEVEL)
+			# add to the score display when we're finishing a challenge mode game
 			if GLOBAL.challenger:
+				final_score_label.add_theme_font_size_override("font_size", 72)
 				final_score_label.text += "\nConsumption score: %02.1f" % (GLOBAL.challenger.score * 10)
 				final_score_label.text += "\nFinal Time: " + Challenger.get_time_text(GLOBAL.challenger.time)
 				GLOBAL.challenger.hide()

@@ -1,15 +1,22 @@
 class_name Regions extends Node2D
 
+# this manages multiple regions that split the world's stars into a grid
+
 const NEIGHBOUR_REGS := [Vector2.LEFT, Vector2.RIGHT,
 	Vector2.UP, Vector2.DOWN,
 	Vector2(1, 1), Vector2(-1, 1),
 	Vector2(1, -1), Vector2(-1, -1)]
+
+# for code completion
 const CutsceneType := preload("res://scenes/world/space/smaller_cutscene.gd")
 
+# spawn regions around this node
 @export var follow: Node2D
 @export var cutscene: CutsceneType
 var _follow_reg_pos: Vector2
 
+# child regions can be accessed by their grid position
+# grid pos -> child reference
 var by_position := {}
 
 
@@ -46,6 +53,7 @@ func _process(delta: float) -> void:
 		_process_faraway_regions()
 
 
+# erase regions that are far away
 func _process_faraway_regions() -> void:
 	var keys_to_erase := []
 	for region_pos: Vector2 in by_position.keys():
@@ -58,6 +66,7 @@ func _process_faraway_regions() -> void:
 		by_position.erase(region_pos)
 
 
+# fade out all regions
 func destroy_children() -> void:
 	var keys_to_erase := []
 	for region_pos: Vector2 in by_position.keys():

@@ -1,14 +1,18 @@
 extends Node
 
-const STARS_PER_LEVEL := 40
+const STARS_PER_LEVEL := 400
 
+# this is used to save how many stars should still be in a region.
+# regions load their desired star generation counts from here.
 var remaining_stars := {}
-var star_noise := FastNoiseLite.new()
+
 var stars_vacuumed := 0
+
 var ui_layer: UI
 var challenger: Challenger
 var regions: Regions
 
+# there is no challenger instance
 var zen_mode := true
 
 var played_once := false

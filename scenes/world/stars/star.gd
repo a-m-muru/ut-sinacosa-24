@@ -1,5 +1,7 @@
 class_name Star extends SpaceFloater
 
+# small tiny creatures that can be vacuumed up for points
+
 const EYE_TEXTURES := [
 	preload("res://scenes/world/stars/1.png"),
 	preload("res://scenes/world/stars/1.small.png"),
@@ -42,12 +44,14 @@ func _ready() -> void:
 	blink_timer.timeout.connect(_blink_timer_timeout)
 	mouth.texture = MOUTH_TEXTURES.pick_random()
 	eyes.texture = EYE_TEXTURES.pick_random()
+	# chonky star
 	if randf() < 0.1:
 		background.texture = BACKGROUND_TEXTURES[1]
 	if randf() < 0.02:
 		scale *= randfn(2, 1)
 	
 	var color: Color = COLORS.pick_random()
+	# some stars don't have predetermined colours for more interesting variety
 	if randf() < 0.05:
 		color = Color(randf(), randf(), randf())
 	glow.modulate = color
@@ -56,6 +60,7 @@ func _ready() -> void:
 
 func _blink_timer_timeout() -> void:
 	blink_timer.wait_time = 16 * randf()
+	# blink (scale the eyes)
 	var tw := create_tween()
 	tw.tween_property(eyes, "scale:y", 0.0, 0.01)
 	tw.tween_interval(0.3)
