@@ -42,8 +42,10 @@ func _ready() -> void:
 	blink_timer.timeout.connect(_blink_timer_timeout)
 	mouth.texture = MOUTH_TEXTURES.pick_random()
 	eyes.texture = EYE_TEXTURES.pick_random()
-	if randf() < 0.01:
+	if randf() < 0.1:
 		background.texture = BACKGROUND_TEXTURES[1]
+	if randf() < 0.02:
+		scale *= randfn(2, 1)
 	
 	var color: Color = COLORS.pick_random()
 	if randf() < 0.05:
