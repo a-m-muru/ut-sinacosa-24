@@ -133,5 +133,7 @@ horizontal_alignment = 1
 [node name="StarCollectionProgress" type="ProgressBar" parent="UI Layer/Challenger/VBoxContainer/ConsumptionScore"]
 unique_name_in_owner = true
 layout_mode = 2
-value = 36.88
+max_value = 1.0
+step = 0.001
+value = 1.0
 show_percentage = false

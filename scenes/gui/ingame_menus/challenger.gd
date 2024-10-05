@@ -36,4 +36,6 @@ func display() -> void:
 		format.push_front(hours)
 	timer_label.text = timer_label.text % format
 	
-	score_label.text = "%010.1f" % score
+	score_label.text = "%010.1f" % (score * 10)
+	
+	star_collection_progress.value = float(GLOBAL.stars_vacuumed) / GLOBAL.STARS_PER_LEVEL

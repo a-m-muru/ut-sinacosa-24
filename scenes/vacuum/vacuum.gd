@@ -112,8 +112,6 @@ func _clean_affected() -> void:
 
 
 func add_score(amount: float) -> void:
-	print("a")
 	if not GLOBAL.challenger:
 		return
-	print("b")
 	GLOBAL.challenger.add_score(amount)
