@@ -14,10 +14,11 @@ var timer_tw: Tween
 
 
 func _ready() -> void:
-	for i in 5000:
+	for i in 500:
 		var taht := TAHT.instantiate()
-		taht.global_position = Vector2(randf_range(-window_size.x, window_size.x), randf_range(-window_size.y, window_size.y)) * 5
+		taht.global_position = Vector2(randf_range(-window_size.x, window_size.x), randf_range(-window_size.y, window_size.y)) * 1
 		star_parent.add_child(taht)
+		taht.direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)) * 4
 	_start_timer()
 
 
