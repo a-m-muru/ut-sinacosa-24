@@ -2,6 +2,8 @@ class_name UI extends CanvasLayer
 
 @onready var pause_panel: Panel = $"Pause panel"
 @onready var game_over_panel: Panel = $"Game Over panel"
+@onready var current_score_label: Label = $"Pause panel/Current Score Label"
+@onready var final_score_label: Label = $"Game Over panel/Final Score Label"
 
 
 
@@ -10,6 +12,10 @@ func _ready() -> void:
 	game_over_panel.visible = false
 	pause_panel.visible = false
 
+
+func _process(delta: float) -> void:
+	current_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed)
+	final_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed)
 
 func _exit_tree() -> void:
 	GLOBAL.ui_layer = null

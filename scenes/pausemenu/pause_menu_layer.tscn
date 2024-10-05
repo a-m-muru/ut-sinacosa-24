@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://rf32etlnquy3"]
+[gd_scene load_steps=14 format=3 uid="uid://rf32etlnquy3"]
 
 [ext_resource type="Script" path="res://scenes/pausemenu/panel_setter.gd" id="1_twdw8"]
 [ext_resource type="Texture2D" uid="uid://bhnaaypk8ty8v" path="res://scenes/pausemenu/pause_icon.png" id="2_jpxo0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://da50da0r7pom2" path="res://scenes/gui/quit_hover.png" id="5_ylwtl"]
 [ext_resource type="Texture2D" uid="uid://kirr3ir7djty" path="res://scenes/gui/Resume_Normal.png" id="6_bc3f8"]
 [ext_resource type="Texture2D" uid="uid://cqrxpif0rq00y" path="res://scenes/gui/Resume_Pressed.png" id="7_y7ypn"]
+[ext_resource type="FontFile" uid="uid://ck46vwy1hmbit" path="res://scenes/gui/BAD.ttf" id="8_fsxsq"]
 [ext_resource type="Texture2D" uid="uid://dggs88nws8rfy" path="res://scenes/pausemenu/end_icon.png" id="8_g87hr"]
 [ext_resource type="Texture2D" uid="uid://c0lfm15wvs68c" path="res://scenes/gui/retry_normal.png" id="9_rmjqq"]
 [ext_resource type="Texture2D" uid="uid://xta7khnnel1k" path="res://scenes/gui/retry_pressed.png" id="10_0rt73"]
@@ -73,8 +74,24 @@ grow_vertical = 0
 texture_normal = ExtResource("6_bc3f8")
 texture_pressed = ExtResource("7_y7ypn")
 
+[node name="Current Score Label" type="Label" parent="Pause panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_fsxsq")
+theme_override_font_sizes/font_size = 86
+text = "Stars Collected: 0"
+
 [node name="Game Over panel" type="Panel" parent="."]
-visible = false
 self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,6 +145,23 @@ grow_vertical = 0
 texture_normal = ExtResource("9_rmjqq")
 texture_pressed = ExtResource("10_0rt73")
 texture_hover = ExtResource("11_juwr2")
+
+[node name="Final Score Label" type="Label" parent="Game Over panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_fsxsq")
+theme_override_font_sizes/font_size = 86
+text = "Stars Collected: 0"
 
 [connection signal="pressed" from="Pause panel/Quit Button P" to="." method="_on_quit_button_p_pressed"]
 [connection signal="pressed" from="Pause panel/Resume Button" to="." method="_on_resume_button_pressed"]
