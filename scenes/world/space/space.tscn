@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq816myq7141v"]
+
+[ext_resource type="PackedScene" uid="uid://b15m1keqts6qx" path="res://scenes/vacuum/vacuum.tscn" id="1_5b2y4"]
+[ext_resource type="Texture2D" uid="uid://dhynb47tkieqa" path="res://scenes/world/space/space.png" id="1_m2pxj"]
+[ext_resource type="Texture2D" uid="uid://w154fcppjdrg" path="res://scenes/world/space/mist.png" id="2_f1yad"]
+[ext_resource type="Script" path="res://scenes/world/space/regions.gd" id="2_n8axi"]
+
+[node name="Space" type="Node2D"]
+
+[node name="SpaceLayer" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.065, 0.065)
+repeat_size = Vector2(3840, 2160)
+repeat_times = 3
+
+[node name="Space" type="Sprite2D" parent="SpaceLayer"]
+position = Vector2(-845, -320)
+texture = ExtResource("1_m2pxj")
+
+[node name="MistLayer" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.235, 0.235)
+repeat_size = Vector2(3840, 2160)
+autoscroll = Vector2(5.81, 2.34)
+repeat_times = 3
+
+[node name="Space" type="Sprite2D" parent="MistLayer"]
+position = Vector2(-845, -320)
+texture = ExtResource("2_f1yad")
+
+[node name="MistLayer2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.235, 0.305)
+scroll_offset = Vector2(1800, 600)
+repeat_size = Vector2(3840, 2160)
+autoscroll = Vector2(24, 2.34)
+repeat_times = 3
+
+[node name="Space" type="Sprite2D" parent="MistLayer2"]
+modulate = Color(0.617301, 0.618394, 0.797638, 0.697)
+position = Vector2(495, 165)
+texture = ExtResource("2_f1yad")
+flip_h = true
+
+[node name="Vacuum" parent="." instance=ExtResource("1_5b2y4")]
+
+[node name="Camera2D" type="Camera2D" parent="Vacuum"]
+zoom = Vector2(0.515, 0.515)
+
+[node name="Regions" type="Node2D" parent="." node_paths=PackedStringArray("follow")]
+script = ExtResource("2_n8axi")
+follow = NodePath("../Vacuum")

@@ -32,4 +32,4 @@ texture = ExtResource("2_k30j3")
 environment = SubResource("Environment_7g3b8")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.577008, 0.577008, 0.577008, 1)
+color = Color(0.907942, 0.907942, 0.907942, 1)

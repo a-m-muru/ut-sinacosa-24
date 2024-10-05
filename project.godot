@@ -10,8 +10,11 @@ config_version=5
 
 [application]
 
-config/name="utjam"
+config/name="Vacuum Decay"
+config/description="A game made in UT GameJam October 2024."
+config/version="0.0.0.2024"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/bg_color=Color(0.128774, 0.132192, 0.205919, 1)
 config/icon="res://icon.svg"
 
 [autoload]

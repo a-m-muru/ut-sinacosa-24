@@ -73,7 +73,7 @@ func _affect_stars(delta: float) -> void:
 		#, CONNECT_ONE_SHOT)
 		var star_speed := DISTANCE_STAR_CURVE.sample_baked(star_distance)
 		star.global_position = (star.global_position.move_toward(global_position,
-				delta * star_speed))
+				delta * star_speed * 2))
 		if star_distance > 2:
 			_star_exited(star)
 	for star in _affected_stars:
