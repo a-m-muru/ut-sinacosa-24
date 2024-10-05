@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name UI extends CanvasLayer
 
 @onready var pause_panel: Panel = $"Pause panel"
 @onready var game_over_panel: Panel = $"Game Over panel"
