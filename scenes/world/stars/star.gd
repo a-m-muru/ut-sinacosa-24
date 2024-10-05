@@ -28,12 +28,13 @@ const COLORS := [
 	Color(0.893, 0.855, 0.699),
 ]
 
-@onready var background: Sprite2D = $Face/Background
+@onready var background: Sprite2D = $Background
 @onready var mouth: Sprite2D = $Face/Mouth
 @onready var eyes: Sprite2D = $Face/Eyes
 @onready var blink_timer: Timer = $BlinkTimer
 @onready var glow := $Glow
 @onready var glow_front := $Glow2
+@onready var face: Node2D = $Face
 
 
 func _ready() -> void:
@@ -57,3 +58,6 @@ func _blink_timer_timeout() -> void:
 	tw.tween_property(eyes, "scale:y", 0.0, 0.01)
 	tw.tween_interval(0.3)
 	tw.tween_property(eyes, "scale:y", 1.0, 0.01)
+	
+	if randf() < 0.5:
+		tw.tween_property(face, "position", Vector2(randf(), randf()) * randf_range(-1, 1) * 18, 0.3)

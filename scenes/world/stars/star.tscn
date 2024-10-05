@@ -56,10 +56,10 @@ texture = ExtResource("2_th7u1")
 material = SubResource("CanvasItemMaterial_rtqr8")
 texture = SubResource("GradientTexture2D_olo53")
 
-[node name="Face" type="Node2D" parent="."]
-
-[node name="Background" type="Sprite2D" parent="Face"]
+[node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("3_ihlt0")
+
+[node name="Face" type="Node2D" parent="."]
 
 [node name="Mouth" type="Sprite2D" parent="Face"]
 position = Vector2(-2, 9)
