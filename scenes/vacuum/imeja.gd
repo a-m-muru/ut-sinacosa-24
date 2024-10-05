@@ -15,7 +15,7 @@ const DISTANCE_STAR_CURVE := preload("res://scenes/vacuum/distance_star_curve.tr
 
 var move_speed := MOVE_SPEED
 var _affected_stars: Array[Area2D] = []
-var state: States
+var state := States.MOVABLE
 
 
 func _ready() -> void:
@@ -67,7 +67,7 @@ func _affect_stars(delta: float) -> void:
 		var star_speed := DISTANCE_STAR_CURVE.sample_baked(star_distance)
 		star.global_position = star.global_position.move_toward(
 				global_position,
-				delta * star_speed * maxf(1.0, velocity.length() * 0.01))
+				delta * star_speed * (maxf(1.0, velocity.length() * 0.01)))
 		if star_distance > 2:
 			_star_exited(star)
 	#queue_redraw()
