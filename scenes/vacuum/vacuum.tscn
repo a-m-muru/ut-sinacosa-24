@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b15m1keqts6qx"]
+[gd_scene load_steps=8 format=3 uid="uid://b15m1keqts6qx"]
 
 [ext_resource type="Texture2D" uid="uid://i4weq57vmlk" path="res://scenes/vacuum/imeja.png" id="1_w3syo"]
 [ext_resource type="Script" path="res://scenes/vacuum/vacuum.gd" id="2_fsomt"]
@@ -11,7 +11,13 @@ region = Rect2(-0.5, -0.5, 151.75, 131.5)
 radius = 133.094
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0i7tp"]
-size = Vector2(56, 48)
+size = Vector2(37, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnr7d"]
+size = Vector2(37, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yimer"]
+size = Vector2(45.5, 90)
 
 [node name="Vacuum" type="CharacterBody2D"]
 collision_mask = 4
@@ -33,4 +39,13 @@ monitorable = false
 shape = SubResource("CircleShape2D_sqvqb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -7)
 shape = SubResource("RectangleShape2D_0i7tp")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-54, -34)
+shape = SubResource("RectangleShape2D_bnr7d")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-28.75, -68)
+shape = SubResource("RectangleShape2D_yimer")

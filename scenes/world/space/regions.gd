@@ -21,6 +21,7 @@ func create_region_neighbours(center_region_pos: Vector2) -> void:
 	create_region(center_region_pos)
 
 
+@warning_ignore("narrowing_conversion")
 func create_region(region_pos: Vector2) -> void:
 	if not region_pos in by_position:
 		var new_region := Region.new()
@@ -58,6 +59,8 @@ func destroy_children() -> void:
 	var keys_to_erase := []
 	for region_pos: Vector2 in by_position.keys():
 		var region: Region = by_position[region_pos]
-		region.queue_free()
+		var tw := create_tween()
+		tw.tween_property(region, "modulate:a", 0.0, 1.0)
+		tw.tween_callback(region.queue_free)
 	for region_pos: Vector2 in by_position.keys():
 		by_position.erase(region_pos)
