@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b15m1keqts6qx"]
+[gd_scene load_steps=6 format=3 uid="uid://b15m1keqts6qx"]
 
 [ext_resource type="Texture2D" uid="uid://i4weq57vmlk" path="res://scenes/vacuum/imeja.png" id="1_w3syo"]
-[ext_resource type="Script" path="res://scenes/vacuum/imeja.gd" id="2_fsomt"]
+[ext_resource type="Script" path="res://scenes/vacuum/vacuum.gd" id="2_fsomt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n280o"]
 atlas = ExtResource("1_w3syo")
@@ -10,7 +10,11 @@ region = Rect2(-0.5, -0.5, 151.75, 131.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_sqvqb"]
 radius = 133.094
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0i7tp"]
+size = Vector2(56, 48)
+
 [node name="Vacuum" type="CharacterBody2D"]
+collision_mask = 4
 script = ExtResource("2_fsomt")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -27,3 +31,6 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionArea"]
 shape = SubResource("CircleShape2D_sqvqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0i7tp")
