@@ -4,14 +4,17 @@ const NEIGHBOUR_REGS := [Vector2.LEFT, Vector2.RIGHT,
 	Vector2.UP, Vector2.DOWN,
 	Vector2(1, 1), Vector2(-1, 1),
 	Vector2(1, -1), Vector2(-1, -1)]
+const CutsceneType := preload("res://scenes/world/space/smaller_cutscene.gd")
 
 @export var follow: Node2D
+@export var cutscene: CutsceneType
 var _follow_reg_pos: Vector2
 
 var by_position := {}
 
 
 func _ready() -> void:
+	GLOBAL.regions = self
 	create_region_neighbours(Vector2(0, 0))
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cq816myq7141v"]
+[gd_scene load_steps=9 format=3 uid="uid://cq816myq7141v"]
 
 [ext_resource type="PackedScene" uid="uid://b15m1keqts6qx" path="res://scenes/vacuum/vacuum.tscn" id="1_5b2y4"]
 [ext_resource type="Script" path="res://scenes/world/space/smaller_cutscene.gd" id="1_80ntu"]
@@ -7,18 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://w154fcppjdrg" path="res://scenes/world/space/mist.png" id="2_f1yad"]
 [ext_resource type="Script" path="res://scenes/world/space/regions.gd" id="2_n8axi"]
 [ext_resource type="PackedScene" uid="uid://rf32etlnquy3" path="res://scenes/pausemenu/pause_menu_layer.tscn" id="5_50a5p"]
-[ext_resource type="Theme" uid="uid://c8o0eqhos064x" path="res://scenes/gui/main_theme.tres" id="8_gvgv6"]
-[ext_resource type="Script" path="res://scenes/gui/ingame_menus/challenger.gd" id="8_muf33"]
-[ext_resource type="FontFile" uid="uid://cq2arlv6kofqa" path="res://scenes/gui/Montserrat-Medium.ttf" id="10_gngap"]
-[ext_resource type="FontFile" uid="uid://ck46vwy1hmbit" path="res://scenes/gui/BAD.ttf" id="11_vtgpw"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_07y35"]
-font = ExtResource("10_gngap")
-font_size = 36
-
-[sub_resource type="LabelSettings" id="LabelSettings_twhbq"]
-font = ExtResource("11_vtgpw")
-font_size = 19
+[ext_resource type="PackedScene" uid="uid://d0xsch44b6cui" path="res://scenes/gui/ingame_menus/challenger.tscn" id="8_gp4lq"]
 
 [node name="Space" type="Node2D"]
 
@@ -72,68 +61,11 @@ flip_h = true
 [node name="Camera2D" type="Camera2D" parent="Vacuum"]
 position_smoothing_enabled = true
 
-[node name="Regions" type="Node2D" parent="." node_paths=PackedStringArray("follow")]
+[node name="Regions" type="Node2D" parent="." node_paths=PackedStringArray("follow", "cutscene")]
 script = ExtResource("2_n8axi")
 follow = NodePath("../Vacuum")
+cutscene = NodePath("../SmallerCutscene")
 
 [node name="UI Layer" parent="." instance=ExtResource("5_50a5p")]
 
-[node name="Challenger" type="Control" parent="UI Layer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("8_gvgv6")
-script = ExtResource("8_muf33")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI Layer/Challenger"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-
-[node name="Timer" type="VBoxContainer" parent="UI Layer/Challenger/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI Layer/Challenger/VBoxContainer/Timer"]
-layout_mode = 2
-text = "TIME"
-label_settings = SubResource("LabelSettings_07y35")
-horizontal_alignment = 1
-
-[node name="TimerLabel" type="Label" parent="UI Layer/Challenger/VBoxContainer/Timer"]
-unique_name_in_owner = true
-layout_mode = 2
-label_settings = SubResource("LabelSettings_07y35")
-horizontal_alignment = 1
-
-[node name="Timer" type="Timer" parent="UI Layer/Challenger/VBoxContainer/Timer"]
-unique_name_in_owner = true
-autostart = true
-
-[node name="ConsumptionScore" type="VBoxContainer" parent="UI Layer/Challenger/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI Layer/Challenger/VBoxContainer/ConsumptionScore"]
-layout_mode = 2
-text = "Consumption Score"
-label_settings = SubResource("LabelSettings_twhbq")
-horizontal_alignment = 1
-
-[node name="ScoreLabel" type="Label" parent="UI Layer/Challenger/VBoxContainer/ConsumptionScore"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0000"
-label_settings = SubResource("LabelSettings_twhbq")
-horizontal_alignment = 1
-
-[node name="StarCollectionProgress" type="ProgressBar" parent="UI Layer/Challenger/VBoxContainer/ConsumptionScore"]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 1.0
-step = 0.001
-value = 1.0
-show_percentage = false
+[node name="Challenger" parent="UI Layer" instance=ExtResource("8_gp4lq")]

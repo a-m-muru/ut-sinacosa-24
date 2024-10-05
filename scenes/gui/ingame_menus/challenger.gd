@@ -5,6 +5,8 @@ class_name Challenger extends Control
 @onready var score_label: Label = %ScoreLabel
 @onready var star_collection_progress: ProgressBar = %StarCollectionProgress
 
+@export var regions: Regions
+
 var score := 0.0
 var time := 0
 
@@ -21,21 +23,45 @@ func _ready() -> void:
 
 func add_score(amount: float) -> void:
 	score += amount
-	display() 
+	display()
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(score_label, "pivot_offset", score_label.size / 2, 0)
+	tw.tween_property(score_label, "scale", Vector2.ONE * 1.1, 0.1)
+	if amount < 0:
+		tw.parallel().tween_property(score_label, "modulate", Color.PALE_VIOLET_RED, 0.1)
+	tw.tween_property(score_label, "scale", Vector2.ONE, 0.1)
+	tw.parallel().tween_property(score_label, "modulate", Color.WHITE, 0.1)
 
 
 @warning_ignore("integer_division")
 func display() -> void:
-	var hours := time / 3600
-	var minutes := (time / 60) - hours * 60
-	var seconds := time - minutes * 60
-	var format := [minutes, seconds]
-	timer_label.text = "%02d:%02d"
-	if hours > 0:
-		timer_label.text += ":%02d"
-		format.push_front(hours)
-	timer_label.text = timer_label.text % format
+	timer_label.text = get_time_text(time)
 	
 	score_label.text = "%010.1f" % (score * 10)
 	
 	star_collection_progress.value = float(GLOBAL.stars_vacuumed) / GLOBAL.STARS_PER_LEVEL
+
+
+static func get_time_text(t: int) -> String:
+	var text := ""
+	var hours := t / 3600
+	var minutes := (t / 60) - hours * 60
+	var seconds := t - minutes * 60
+	var format := [minutes, seconds]
+	text = "%02d:%02d"
+	if hours > 0:
+		text += ":%02d"
+		format.push_front(hours)
+	text = text % format
+	return text
+
+
+func end_challenge() -> void:
+	timer.stop()
+	timer_label.modulate = Color.KHAKI
+	
+	var t := create_tween().set_loops(-1)
+	t.tween_callback(timer_label.set_modulate.bind(Color.KHAKI))
+	t.tween_interval(0.77)
+	t.tween_callback(timer_label.set_modulate.bind(Color.GOLD))
+	t.tween_interval(0.77)

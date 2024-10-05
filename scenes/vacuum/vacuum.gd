@@ -1,6 +1,6 @@
 class_name Vacuum extends CharacterBody2D
 
-enum States {FROZEN, MOVABLE, SPRINTING}
+enum States {FROZEN = 0b001, MOVABLE = 0b010, SPRINTING = 0b110}
 
 const ACCEL := 2400
 const DECEL := 1600
@@ -76,6 +76,8 @@ func _free_star(star: SpaceFloater) -> void:
 
 
 func _affect_stars(delta: float) -> void:
+	if (state & States.FROZEN) != 0:
+		return
 	for star in _affected_stars:
 		if not is_instance_valid(star):
 			_clean_affected()
@@ -112,6 +114,7 @@ func _clean_affected() -> void:
 
 
 func add_score(amount: float) -> void:
+	GLOBAL.check_star_completion()
 	if not GLOBAL.challenger:
 		return
 	GLOBAL.challenger.add_score(amount)

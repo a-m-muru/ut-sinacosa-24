@@ -13,18 +13,21 @@ func _ready() -> void:
 	pause_panel.visible = false
 
 
-func _process(delta: float) -> void:
-	current_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed)
-	final_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed)
-
 func _exit_tree() -> void:
 	GLOBAL.ui_layer = null
 
 
 func call_panel(gameover = false) -> void:
+	current_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed)
 	if (!game_over_panel.visible):
 		if (gameover): #If the game ends
 			game_over_panel.visible = true
+			final_score_label.add_theme_font_size_override("font_size", 72)
+			final_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed) + "/" + str(GLOBAL.STARS_PER_LEVEL)
+			if GLOBAL.challenger:
+				final_score_label.text += "\nConsumption score: %02.1f" % (GLOBAL.challenger.score * 10)
+				final_score_label.text += "\nFinal Time: " + Challenger.get_time_text(GLOBAL.challenger.time)
+				GLOBAL.challenger.hide()
 		else: #If the player presses the escape key.
 			if (pause_panel.visible):
 				pause_panel.visible = false
