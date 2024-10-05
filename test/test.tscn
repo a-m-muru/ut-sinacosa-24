@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://62kkks72qcmu"]
+[gd_scene load_steps=9 format=3 uid="uid://62kkks72qcmu"]
 
 [ext_resource type="Texture2D" uid="uid://vkxnp3h3862g" path="res://icon.svg" id="1_wmxbm"]
+[ext_resource type="PackedScene" uid="uid://c84kbb74ftmx4" path="res://scenes/world/planets/planet.tscn" id="2_b7ntp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7f7vg"]
 font_size = 481
@@ -106,3 +107,6 @@ position = Vector2(15, 2)
 rotation = -1.5708
 scale = Vector2(0.1875, 4.60938)
 texture = ExtResource("1_wmxbm")
+
+[node name="Planet" parent="." instance=ExtResource("2_b7ntp")]
+position = Vector2(575, 331)

@@ -10,7 +10,10 @@ config_version=5
 
 [application]
 
-config/name="utjam"
+config/name="Vacuum Decay"
+config/description="A game made in UT GameJam October 2024."
+config/version="0.0.0.2024"
+run/main_scene="res://scenes/gui/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -55,3 +58,4 @@ sprint={
 
 2d_physics/layer_1="vacuum"
 2d_physics/layer_2="star"
+2d_physics/layer_3="planet"

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://c84kbb74ftmx4"]
+
+[ext_resource type="Script" path="res://scenes/world/planets/planet.gd" id="1_muy0r"]
+[ext_resource type="Texture2D" uid="uid://dqaeatslbjgaf" path="res://scenes/world/planets/big.1.5.f.png" id="2_ts2bl"]
+[ext_resource type="Texture2D" uid="uid://dh0tasdf45for" path="res://scenes/world/planets/big.1.5.e.png" id="3_x108n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8cll"]
+radius = 136.945
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_04btf"]
+radius = 149.003
+
+[node name="Planet" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_muy0r")
+scale_range = Vector2(0.885, 1.085)
+rotation_range = Vector2(-0.15, 0.605)
+
+[node name="Collision" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+shape = SubResource("CircleShape2D_m8cll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_04btf")
+debug_color = Color(0.869522, 0.825334, 0.971829, 0.42)
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(0, -10.5)
+texture = ExtResource("2_ts2bl")
+
+[node name="Eyes" type="Sprite2D" parent="."]
+position = Vector2(0, -10.5)
+texture = ExtResource("3_x108n")
+
+[node name="BlinkTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true

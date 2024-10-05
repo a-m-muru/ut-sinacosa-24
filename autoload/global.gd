@@ -1,13 +1,20 @@
 extends Node
 
-const STARS_PER_LEVEL := 1000
+const STARS_PER_LEVEL := 400
 
 var remaining_stars := {}
 var star_noise := FastNoiseLite.new()
 var stars_vacuumed := 0
 var ui_layer: CanvasLayer = null
 
-var zen_mode = true
+var zen_mode := true
+
+var played_once := false
+
+
+func reset_counters() -> void:
+	remaining_stars = {}
+	stars_vacuumed = 0
 
 
 func _unhandled_key_input(event: InputEvent) -> void:

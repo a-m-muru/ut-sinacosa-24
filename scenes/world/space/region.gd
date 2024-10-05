@@ -1,6 +1,7 @@
 class_name Region extends Node2D
 
 const STAR := preload("res://scenes/world/stars/star.tscn")
+const PLANET := preload("res://scenes/world/planets/planet.tscn")
 const SIZE := Vector2(1920, 1920)
 
 var desired_stars := 100
@@ -20,6 +21,9 @@ func _ready() -> void:
 		var s := create_star()
 		add_child(s)
 		s.position += (Vector2(randf_range(-SIZE.x/2, SIZE.x/2), randf_range(-SIZE.y/2, SIZE.y/2)))
+	if hash(reg_position) % 10 < 6 and reg_position != Vector2.ZERO:
+		var planet := create_planet()
+		add_child(planet)
 
 
 func save_removed_stars() -> void:
@@ -35,10 +39,15 @@ static func create_star() -> Star:
 	return star
 
 
-static func stellar_explosion(source: SpaceFloater, amount: int, start_distance: float, impulse_mult: float) -> void:
+static func create_planet() -> Planet:
+	var planet := PLANET.instantiate()
+	return planet
+
+
+static func stellar_explosion(source: SpaceFloater, amount: int, start_distance: float, impulse_mult: float, impulse_rand := Vector2.ZERO) -> void:
 	for i in amount:
 		var s := Region.create_star()
 		source.add_sibling(s)
 		s.position = source.position + Vector2.from_angle(randf() * TAU) * start_distance
-		s.apply_impulse((s.position - source.position) * impulse_mult)
+		s.apply_impulse((s.position - source.position) * (impulse_mult + randf_range(impulse_rand.x, impulse_rand.y)))
 		s.scale *= 0.5

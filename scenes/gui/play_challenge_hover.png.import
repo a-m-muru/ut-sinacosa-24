@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3x2ecsq78pfm"
-path="res://.godot/imported/big.2.5.e.png-6661fb543f6646ba5a79916f7393acc2.ctex"
+uid="uid://drnra3v3446ha"
+path="res://.godot/imported/play_challenge_hover.png-1c828e14033beca695465a5f3493c81d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/world/planets/big.2.5.e.png"
-dest_files=["res://.godot/imported/big.2.5.e.png-6661fb543f6646ba5a79916f7393acc2.ctex"]
+source_file="res://scenes/gui/play_challenge_hover.png"
+dest_files=["res://.godot/imported/play_challenge_hover.png-1c828e14033beca695465a5f3493c81d.ctex"]
 
 [params]
 
