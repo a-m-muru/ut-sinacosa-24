@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://crxjn34sk5jfm"]
 
 [ext_resource type="FontFile" uid="uid://cq2arlv6kofqa" path="res://scenes/gui/Montserrat-Medium.ttf" id="1_df4d5"]
-[ext_resource type="StyleBox" path="res://scenes/gui/button.tres" id="2_4xq2w"]
+[ext_resource type="StyleBox" uid="uid://vdqc7fsmqqsn" path="res://scenes/gui/button.tres" id="2_4xq2w"]
 [ext_resource type="Texture2D" uid="uid://ks3dbfh64ls2" path="res://scenes/gui/title.png" id="3_j3ykq"]
 [ext_resource type="Script" path="res://scenes/gui/main_menu.gd" id="3_k5dg5"]
 [ext_resource type="Texture2D" uid="uid://d31biu5pcu7qn" path="res://scenes/gui/play_challenge_normal.png" id="4_h27nf"]
@@ -128,6 +128,7 @@ texture_hover = ExtResource("17_eskly")
 stretch_mode = 0
 
 [node name="Credits" type="Panel" parent="."]
+visible = false
 material = SubResource("CanvasItemMaterial_slfa5")
 layout_mode = 1
 anchors_preset = 15
