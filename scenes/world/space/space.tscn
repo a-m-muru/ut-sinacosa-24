@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scenes/world/space/bg_star_layer.gd" id="2_0wrbr"]
 [ext_resource type="Texture2D" uid="uid://w154fcppjdrg" path="res://scenes/world/space/mist.png" id="2_f1yad"]
 [ext_resource type="Script" path="res://scenes/world/space/regions.gd" id="2_n8axi"]
-[ext_resource type="PackedScene" uid="uid://rf32etlnquy3" path="res://scenes/gui/ingame_menus/pause_menu_layer.tscn" id="5_50a5p"]
+[ext_resource type="PackedScene" uid="uid://rf32etlnquy3" path="res://scenes/pausemenu/pause_menu_layer.tscn" id="5_50a5p"]
 
 [node name="Space" type="Node2D"]
 
