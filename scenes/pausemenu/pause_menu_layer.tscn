@@ -1,13 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://rf32etlnquy3"]
 
-<<<<<<<< HEAD:scenes/pausemenu/pause_menu_layer.tscn
 [ext_resource type="Script" path="res://scenes/pausemenu/panel_setter.gd" id="1_twdw8"]
 
 [sub_resource type="Theme" id="Theme_v6p1j"]
 Panel/styles/panel = null
-========
-[ext_resource type="Script" path="res://scenes/gui/ingame_menus/panel_setter.gd" id="1_1spne"]
->>>>>>>> 24cd677542d9a9196c3ba61de7521271f0166d38:scenes/gui/ingame_menus/pause_menu_layer.tscn
 
 [node name="UI Layer" type="CanvasLayer"]
 script = ExtResource("1_twdw8")
