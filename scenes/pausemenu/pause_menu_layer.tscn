@@ -40,7 +40,7 @@ offset_bottom = 426.0
 grow_horizontal = 2
 texture = ExtResource("2_jpxo0")
 
-[node name="TextureButton" type="TextureButton" parent="Pause panel"]
+[node name="Quit Button P" type="TextureButton" parent="Pause panel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -57,7 +57,7 @@ texture_normal = ExtResource("3_ep23f")
 texture_pressed = ExtResource("4_ppide")
 texture_hover = ExtResource("5_ylwtl")
 
-[node name="TextureButton2" type="TextureButton" parent="Pause panel"]
+[node name="Resume Button" type="TextureButton" parent="Pause panel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -74,7 +74,6 @@ texture_normal = ExtResource("6_bc3f8")
 texture_pressed = ExtResource("7_y7ypn")
 
 [node name="Game Over panel" type="Panel" parent="."]
-visible = false
 self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,7 +94,7 @@ offset_bottom = 426.0
 grow_horizontal = 2
 texture = ExtResource("8_g87hr")
 
-[node name="TextureButton" type="TextureButton" parent="Game Over panel"]
+[node name="Quit Button G" type="TextureButton" parent="Game Over panel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -112,7 +111,7 @@ texture_normal = ExtResource("3_ep23f")
 texture_pressed = ExtResource("4_ppide")
 texture_hover = ExtResource("5_ylwtl")
 
-[node name="TextureButton2" type="TextureButton" parent="Game Over panel"]
+[node name="Retry Button" type="TextureButton" parent="Game Over panel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -128,3 +127,8 @@ grow_vertical = 0
 texture_normal = ExtResource("9_rmjqq")
 texture_pressed = ExtResource("10_0rt73")
 texture_hover = ExtResource("11_juwr2")
+
+[connection signal="pressed" from="Pause panel/Quit Button P" to="." method="_on_quit_button_p_pressed"]
+[connection signal="pressed" from="Pause panel/Resume Button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Game Over panel/Quit Button G" to="." method="_on_quit_button_g_pressed"]
+[connection signal="pressed" from="Game Over panel/Retry Button" to="." method="_on_retry_button_pressed"]
