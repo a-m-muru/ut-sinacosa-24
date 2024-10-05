@@ -12,6 +12,7 @@ const DISTANCE_STAR_CURVE := preload("res://scenes/vacuum/distance_star_curve.tr
 
 @onready var collection_area: Area2D = $"CollectionArea"
 @onready var vacuum_suck_shape: CircleShape2D = $CollectionArea/CollisionShape2D.shape
+@onready var sprite: Sprite2D = $Sprite
 
 var move_speed := MOVE_SPEED
 var _affected_stars: Array[Star] = []

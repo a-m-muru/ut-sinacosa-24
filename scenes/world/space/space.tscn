@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cq816myq7141v"]
+[gd_scene load_steps=8 format=3 uid="uid://cq816myq7141v"]
 
 [ext_resource type="PackedScene" uid="uid://b15m1keqts6qx" path="res://scenes/vacuum/vacuum.tscn" id="1_5b2y4"]
+[ext_resource type="Script" path="res://scenes/world/space/smaller_cutscene.gd" id="1_80ntu"]
 [ext_resource type="Texture2D" uid="uid://dhynb47tkieqa" path="res://scenes/world/space/space.png" id="1_m2pxj"]
 [ext_resource type="Script" path="res://scenes/world/space/bg_star_layer.gd" id="2_0wrbr"]
 [ext_resource type="Texture2D" uid="uid://w154fcppjdrg" path="res://scenes/world/space/mist.png" id="2_f1yad"]
@@ -8,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://rf32etlnquy3" path="res://scenes/gui/ingame_menus/pause_menu_layer.tscn" id="5_50a5p"]
 
 [node name="Space" type="Node2D"]
+
+[node name="SmallerCutscene" type="Node" parent="."]
+script = ExtResource("1_80ntu")
 
 [node name="SpaceLayer" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.065, 0.065)
