@@ -1,4 +1,4 @@
-class_name Star extends Area2D
+class_name Star extends SpaceFloater
 
 const EYE_TEXTURES := [
 	preload("res://scenes/world/stars/1.png"),
@@ -28,8 +28,6 @@ const COLORS := [
 	Color(0.893, 0.855, 0.699),
 ]
 
-const DECEL := 400
-
 @onready var background: Sprite2D = $Face/Background
 @onready var mouth: Sprite2D = $Face/Mouth
 @onready var eyes: Sprite2D = $Face/Eyes
@@ -38,43 +36,19 @@ const DECEL := 400
 @onready var glow_front := $Glow2
 
 
-var _velocity: Vector2
-var direction: Vector2
-var rotation_direction: float
-
-
 func _ready() -> void:
+	super()
 	blink_timer.timeout.connect(_blink_timer_timeout)
 	mouth.texture = MOUTH_TEXTURES.pick_random()
 	eyes.texture = EYE_TEXTURES.pick_random()
 	if randf() < 0.01:
 		background.texture = BACKGROUND_TEXTURES[1]
-	var scle := randf_range(0.4, 1.1)
-	scale = Vector2(scle, scle)
-	rotation = randf() * TAU
-	rotation_direction = randf_range(-1, 1)
+	
 	var color: Color = COLORS.pick_random()
 	if randf() < 0.05:
 		color = Color(randf(), randf(), randf())
 	glow.modulate = color
 	glow_front.modulate = color
-
-
-func _physics_process(delta: float) -> void:
-	_velocity = _velocity.move_toward(Vector2.ZERO, DECEL * delta)
-	
-	global_position += _velocity * delta
-	global_position += direction * delta
-	
-	rotation += rotation_direction * delta
-
-
-func set_velocity(velo: Vector2) -> void:
-	_velocity = velo
-
-
-func apply_impulse(impulse: Vector2) -> void:
-	_velocity += impulse
 
 
 func _blink_timer_timeout() -> void:

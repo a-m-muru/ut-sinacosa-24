@@ -8,11 +8,13 @@ const NEW_SCALE := 6.0
 @export var regions: Regions
 @export var para_layers: Array[Parallax2D]
 
+
 # DEBUG
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_END:
 			play()
+
 
 func play() -> void:
 	var tw := create_tween()
