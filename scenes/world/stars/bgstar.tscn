@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsp3i0ccavi7u"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h1qv4"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_nyln5"]
+offsets = PackedFloat32Array(0, 0.22792, 0.5427)
+colors = PackedColorArray(1, 1, 1, 1, 0.916005, 0.916005, 0.916005, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5noat"]
+gradient = SubResource("Gradient_nyln5")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Bgstar" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_h1qv4")
+texture = SubResource("GradientTexture2D_5noat")

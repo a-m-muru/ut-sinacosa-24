@@ -7,7 +7,7 @@ blend_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_pv61c"]
 offsets = PackedFloat32Array(0, 0.307692, 0.626781, 1)
-colors = PackedColorArray(0.951, 9.73, 25.406, 1, 0.724415, 0.850194, 0.90457, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0.0137742, 0.320911, 0.43335, 1, 0.289734, 0.463664, 0.534517, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6vj5m"]
 gradient = SubResource("Gradient_pv61c")

@@ -3,7 +3,7 @@ class_name Region extends Node2D
 const STAR := preload("res://scenes/world/stars/star.tscn")
 const SIZE := Vector2(1920, 1920)
 
-var desired_stars := 300
+var desired_stars := 100
 var reg_position := Vector2()
 
 

@@ -28,6 +28,8 @@ func _physics_process(delta: float) -> void:
 			pass
 		States.MOVABLE, States.SPRINTING:
 			var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+			if Input.is_action_pressed("mouse_press"):
+				input = (get_global_mouse_position() - global_position).limit_length(1.0)
 			
 			if Input.is_action_pressed("sprint"):
 				move_speed = SPRINT_SPEED
@@ -59,7 +61,10 @@ func _star_exited(star: Area2D) -> void:
 
 func _free_star(star: Star) -> void:
 	if not star in _affected_stars:
-		star.queue_free()
+		var tw := create_tween()
+		tw.tween_property(star, "scale", Vector2.ZERO, 0.1)
+		tw.tween_callback(star.queue_free)
+		GLOBAL.stars_vacuumed += 1
 
 
 func _affect_stars(delta: float) -> void:
