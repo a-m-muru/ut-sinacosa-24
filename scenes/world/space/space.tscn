@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq816myq7141v"]
+[gd_scene load_steps=6 format=3 uid="uid://cq816myq7141v"]
 
 [ext_resource type="PackedScene" uid="uid://b15m1keqts6qx" path="res://scenes/vacuum/vacuum.tscn" id="1_5b2y4"]
 [ext_resource type="Texture2D" uid="uid://dhynb47tkieqa" path="res://scenes/world/space/space.png" id="1_m2pxj"]
 [ext_resource type="Texture2D" uid="uid://w154fcppjdrg" path="res://scenes/world/space/mist.png" id="2_f1yad"]
 [ext_resource type="Script" path="res://scenes/world/space/regions.gd" id="2_n8axi"]
+[ext_resource type="PackedScene" uid="uid://rf32etlnquy3" path="res://scenes/InGameMenus/pause_menu_layer.tscn" id="5_50a5p"]
 
 [node name="Space" type="Node2D"]
 
@@ -47,11 +48,4 @@ flip_h = true
 script = ExtResource("2_n8axi")
 follow = NodePath("../Vacuum")
 
-[node name="UI Layer" type="CanvasLayer" parent="."]
-
-[node name="Label" type="Label" parent="UI Layer"]
-offset_right = 40.0
-offset_bottom = 23.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "TEST"
+[node name="UI Layer" parent="." instance=ExtResource("5_50a5p")]
