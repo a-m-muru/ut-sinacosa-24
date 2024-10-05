@@ -12,10 +12,10 @@ var reg_position := Vector2()
 	#draw_rect(Rect2(-SIZE/2, SIZE), Color(Color.PURPLE), false)
 
 
+@warning_ignore("integer_division", "narrowing_conversion")
 func _ready() -> void:
 	if reg_position in GLOBAL.remaining_stars:
 		desired_stars = GLOBAL.remaining_stars[reg_position]
-	desired_stars = maxf(0, desired_stars - GLOBAL.stars_vacuumed)
 	for i in desired_stars:
 		var star := STAR.instantiate()
 		star.position = Vector2(randf_range(-SIZE.x/2, SIZE.x/2), randf_range(-SIZE.y/2, SIZE.y/2))

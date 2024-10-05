@@ -54,6 +54,8 @@ func _ready() -> void:
 	rotation = randf() * TAU
 	rotation_direction = randf_range(-1, 1)
 	var color: Color = COLORS.pick_random()
+	if randf() < 0.05:
+		color = Color(randf(), randf(), randf())
 	glow.modulate = color
 	glow_front.modulate = color
 

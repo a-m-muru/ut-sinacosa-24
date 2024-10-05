@@ -28,6 +28,7 @@ func create_region(region_pos: Vector2) -> void:
 		new_region.name = str(region_pos)
 		new_region.reg_position = region_pos
 		new_region.global_position = Region.SIZE * region_pos
+		new_region.desired_stars = maxf(0, new_region.desired_stars - (GLOBAL.stars_vacuumed / maxi(1, by_position.size())))
 		add_child(new_region)
 
 
