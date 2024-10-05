@@ -9,10 +9,13 @@ font_size = 481
 resource_name = "asdasdsadsadas"
 script/source = "extends Sprite2D
 
+@export var midagi: Node
+@onready var midagi_oaremat = $\"../HBoxContainer\"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	for child in midagi_oaremat.get_children():
+		child.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,7 +39,31 @@ offset_bottom = 23.0
 text = "tere"
 label_settings = SubResource("LabelSettings_7f7vg")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(282, 283)
+[node name="Icon" type="Sprite2D" parent="." node_paths=PackedStringArray("midagi")]
+position = Vector2(-28, 269)
 texture = ExtResource("1_awnee")
 script = SubResource("GDScript_21vod")
+midagi = NodePath("../HBoxContainer")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 38.0
+offset_right = 1048.0
+offset_bottom = 608.0
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextEdit2" type="TextEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextEdit3" type="TextEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextEdit4" type="TextEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
