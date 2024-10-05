@@ -7,6 +7,8 @@ var star_noise := FastNoiseLite.new()
 var stars_vacuumed := 0
 var ui_layer: CanvasLayer = null
 
+var zen_mode = true
+
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause_game"):

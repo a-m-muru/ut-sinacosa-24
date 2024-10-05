@@ -1,9 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://crxjn34sk5jfm"]
+[gd_scene load_steps=16 format=3 uid="uid://crxjn34sk5jfm"]
 
 [ext_resource type="FontFile" uid="uid://cq2arlv6kofqa" path="res://scenes/gui/Montserrat-Medium.ttf" id="1_df4d5"]
 [ext_resource type="StyleBox" uid="uid://vdqc7fsmqqsn" path="res://scenes/gui/button.tres" id="2_4xq2w"]
 [ext_resource type="Texture2D" uid="uid://ks3dbfh64ls2" path="res://scenes/gui/title.png" id="3_j3ykq"]
-[ext_resource type="Texture2D" uid="uid://ciyr8xqptbewn" path="res://scenes/gui/quit1.png" id="4_glbvg"]
+[ext_resource type="Script" path="res://scenes/gui/main_menu.gd" id="3_k5dg5"]
+[ext_resource type="Texture2D" uid="uid://d31biu5pcu7qn" path="res://scenes/gui/play_challenge_normal.png" id="4_h27nf"]
+[ext_resource type="Texture2D" uid="uid://bupsl0hr67f4f" path="res://scenes/gui/credits_normal.png" id="4_hd0pk"]
+[ext_resource type="Texture2D" uid="uid://c77kledpcwg6l" path="res://scenes/gui/credits_pressed.png" id="5_ixq3j"]
+[ext_resource type="Texture2D" uid="uid://dwskw2tmt4hmm" path="res://scenes/gui/play_challenge_pressed.png" id="5_mvdh4"]
+[ext_resource type="Texture2D" uid="uid://d28ip1frr8thc" path="res://scenes/gui/play_zen_normal.png" id="6_xw1sa"]
+[ext_resource type="Texture2D" uid="uid://b8w54fl6lhjhv" path="res://scenes/gui/play_zen_pressed.png" id="7_lb8ox"]
+[ext_resource type="Texture2D" uid="uid://4r1agfexiuol" path="res://scenes/gui/quit_normal.png" id="8_pbtke"]
+[ext_resource type="Texture2D" uid="uid://cqmltjb30y5oa" path="res://scenes/gui/quit_pressed.png" id="9_plyev"]
+[ext_resource type="Texture2D" uid="uid://da50da0r7pom2" path="res://scenes/gui/quit_hover.png" id="10_r6wtg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upbn3"]
 bg_color = Color(1, 1, 1, 1)
@@ -21,12 +30,6 @@ Button/fonts/font = ExtResource("1_df4d5")
 Button/styles/hover = SubResource("StyleBoxFlat_upbn3")
 Button/styles/normal = ExtResource("2_4xq2w")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pf7v7"]
-texture = ExtResource("4_glbvg")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_31gx3"]
-texture = ExtResource("4_glbvg")
-
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -39,36 +42,66 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_j7eul")
+script = ExtResource("3_k5dg5")
 
 [node name="Title" type="Sprite2D" parent="."]
 position = Vector2(961, 277)
 texture = ExtResource("3_j3ykq")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Credits Button" type="TextureButton" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 406.0
+offset_left = -247.0
+offset_top = -125.0
+offset_right = -3.00012
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.85, 0.85)
+texture_normal = ExtResource("4_hd0pk")
+texture_pressed = ExtResource("5_ixq3j")
+texture_hover = ExtResource("5_ixq3j")
+stretch_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -465.0
+offset_bottom = -80.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+mouse_filter = 2
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 19
 alignment = 1
 
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Play_Challenge Button" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-text = "Play"
+texture_normal = ExtResource("4_h27nf")
+texture_pressed = ExtResource("5_mvdh4")
 
-[node name="Button2" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Play_Relax Button" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxTexture_pf7v7")
-theme_override_styles/normal = SubResource("StyleBoxTexture_31gx3")
-text = " "
+texture_normal = ExtResource("6_xw1sa")
+texture_pressed = ExtResource("7_lb8ox")
 
-[node name="Button3" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Quit Button" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Credits"
+texture_normal = ExtResource("8_pbtke")
+texture_pressed = ExtResource("9_plyev")
+texture_hover = ExtResource("10_r6wtg")
+
+[connection signal="pressed" from="Credits Button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Play_Challenge Button" to="." method="_on_play_challenge_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Play_Relax Button" to="." method="_on_play_relax_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]
