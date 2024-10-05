@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Vacuum extends CharacterBody2D
 
 enum States {FROZEN, MOVABLE, SPRINTING}
 
