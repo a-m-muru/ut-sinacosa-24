@@ -8,9 +8,9 @@ var desired_stars := 100
 var reg_position := Vector2()
 
 #
-func _draw() -> void:
-	draw_rect(Rect2(-SIZE/2, SIZE), Color(Color.PURPLE, 0.3))
-	draw_rect(Rect2(-SIZE/2, SIZE), Color(Color.PURPLE), false)
+#func _draw() -> void:
+	#draw_rect(Rect2(-SIZE/2, SIZE), Color(Color.PURPLE, 0.3))
+	#draw_rect(Rect2(-SIZE/2, SIZE), Color(Color.PURPLE), false)
 
 
 @warning_ignore("integer_division", "narrowing_conversion")
@@ -44,10 +44,10 @@ static func create_planet() -> Planet:
 	return planet
 
 
-static func stellar_explosion(source: SpaceFloater, amount: int, start_distance: float, impulse_mult: float) -> void:
+static func stellar_explosion(source: SpaceFloater, amount: int, start_distance: float, impulse_mult: float, impulse_rand := Vector2.ZERO) -> void:
 	for i in amount:
 		var s := Region.create_star()
 		source.add_sibling(s)
 		s.position = source.position + Vector2.from_angle(randf() * TAU) * start_distance
-		s.apply_impulse((s.position - source.position) * impulse_mult)
+		s.apply_impulse((s.position - source.position) * (impulse_mult + randf_range(impulse_rand.x, impulse_rand.y)))
 		s.scale *= 0.5

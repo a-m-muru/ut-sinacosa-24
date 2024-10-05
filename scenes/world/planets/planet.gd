@@ -28,4 +28,9 @@ func _ready() -> void:
 
 
 func vacuum_collision_response(vacuum: Vacuum) -> void:
-	apply_impulse((global_position - vacuum.global_position).limit_length(4.0))
+	var away_direction := (global_position - vacuum.global_position).normalized()
+	apply_impulse(away_direction * 170.0)
+	rotation_direction *= 2.0
+	if absf(rotation_direction) >= 30:
+		Region.stellar_explosion(self, 60, 30, 16, Vector2(-6, 6))
+		queue_free()
