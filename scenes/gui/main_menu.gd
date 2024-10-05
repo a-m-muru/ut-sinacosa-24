@@ -1,18 +1,16 @@
 extends Control
-@onready var credits_button: TextureButton = $"Credits Button"
-@onready var play_challenge_button: TextureButton = $"HBoxContainer/VBoxContainer/Play_Challenge Button"
-@onready var play_relax_button: TextureButton = $"HBoxContainer/VBoxContainer/Play_Relax Button"
-@onready var quit_button: TextureButton = $"HBoxContainer/VBoxContainer/Quit Button"
+@onready var credits: TextureRect = $Credits
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	credits.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("pause_game"):
+		credits.visible = false
 
 
 func _on_play_challenge_button_pressed() -> void:
@@ -30,4 +28,4 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_credits_button_pressed() -> void:
-	pass # Replace with function body.
+	credits.visible = true
