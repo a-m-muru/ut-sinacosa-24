@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://crxjn34sk5jfm"]
+[gd_scene load_steps=25 format=3 uid="uid://crxjn34sk5jfm"]
 
 [ext_resource type="FontFile" uid="uid://cq2arlv6kofqa" path="res://scenes/gui/Montserrat-Medium.ttf" id="1_df4d5"]
 [ext_resource type="StyleBox" uid="uid://vdqc7fsmqqsn" path="res://scenes/gui/button.tres" id="2_4xq2w"]
@@ -10,10 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://dwskw2tmt4hmm" path="res://scenes/gui/play_challenge_pressed.png" id="5_mvdh4"]
 [ext_resource type="Texture2D" uid="uid://d28ip1frr8thc" path="res://scenes/gui/play_zen_normal.png" id="6_xw1sa"]
 [ext_resource type="Texture2D" uid="uid://b8w54fl6lhjhv" path="res://scenes/gui/play_zen_pressed.png" id="7_lb8ox"]
+[ext_resource type="Texture2D" uid="uid://drnra3v3446ha" path="res://scenes/gui/play_challenge_hover.png" id="8_p3d32"]
 [ext_resource type="Texture2D" uid="uid://4r1agfexiuol" path="res://scenes/gui/quit_normal.png" id="8_pbtke"]
 [ext_resource type="Texture2D" uid="uid://cqmltjb30y5oa" path="res://scenes/gui/quit_pressed.png" id="9_plyev"]
 [ext_resource type="Texture2D" uid="uid://da50da0r7pom2" path="res://scenes/gui/quit_hover.png" id="10_r6wtg"]
+[ext_resource type="Texture2D" uid="uid://pm7qbvlcmds0" path="res://scenes/gui/play_zen_hover.png" id="11_ecg0n"]
 [ext_resource type="Texture2D" uid="uid://bxryiwekikno" path="res://scenes/gui/menu_background.png" id="14_7xm63"]
+[ext_resource type="Texture2D" uid="uid://3slaaf2h24fl" path="res://scenes/gui/credits_hover.png" id="17_eskly"]
+[ext_resource type="Texture2D" uid="uid://bdbkg0n7w6lkv" path="res://scenes/gui/credits_text.png" id="18_as8v1"]
+[ext_resource type="FontFile" uid="uid://ck46vwy1hmbit" path="res://scenes/gui/BAD.ttf" id="19_mk422"]
+[ext_resource type="Texture2D" uid="uid://dwkgyyxnbbphc" path="res://scenes/gui/return_normal.png" id="19_o2mtl"]
+[ext_resource type="Texture2D" uid="uid://bf7b24ldyv58f" path="res://scenes/gui/return_pressed.png" id="20_jj5vv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upbn3"]
 bg_color = Color(1, 1, 1, 1)
@@ -31,6 +38,9 @@ Button/fonts/font = ExtResource("1_df4d5")
 Button/styles/hover = SubResource("StyleBoxFlat_upbn3")
 Button/styles/normal = ExtResource("2_4xq2w")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_slfa5"]
+blend_mode = 3
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -45,7 +55,7 @@ grow_vertical = 2
 theme = SubResource("Theme_j7eul")
 script = ExtResource("3_k5dg5")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 modulate = Color(0.813258, 0.813258, 0.813258, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -84,11 +94,13 @@ alignment = 1
 layout_mode = 2
 texture_normal = ExtResource("4_h27nf")
 texture_pressed = ExtResource("5_mvdh4")
+texture_hover = ExtResource("8_p3d32")
 
 [node name="Play_Relax Button" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("6_xw1sa")
 texture_pressed = ExtResource("7_lb8ox")
+texture_hover = ExtResource("11_ecg0n")
 
 [node name="Quit Button" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -112,21 +124,71 @@ grow_vertical = 0
 scale = Vector2(0.85, 0.85)
 texture_normal = ExtResource("4_hd0pk")
 texture_pressed = ExtResource("5_ixq3j")
-texture_hover = ExtResource("5_ixq3j")
+texture_hover = ExtResource("17_eskly")
 stretch_mode = 0
 
-[node name="Credits" type="TextureRect" parent="."]
-visible = false
+[node name="Credits" type="Panel" parent="."]
+material = SubResource("CanvasItemMaterial_slfa5")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -4.0
+offset_right = -6.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("14_7xm63")
-stretch_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -503.0
+offset_top = -238.5
+offset_right = 503.0
+offset_bottom = 238.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_as8v1")
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -489.0
+offset_top = 68.0
+offset_right = 489.0
+offset_bottom = 267.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("19_mk422")
+theme_override_font_sizes/font_size = 198
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="Credits"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -195.0
+offset_right = 118.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("19_o2mtl")
+texture_pressed = ExtResource("20_jj5vv")
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Play_Challenge Button" to="." method="_on_play_challenge_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Play_Relax Button" to="." method="_on_play_relax_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Credits Button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Credits/TextureButton" to="." method="_on_texture_button_pressed"]

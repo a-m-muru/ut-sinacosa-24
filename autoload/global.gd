@@ -7,7 +7,9 @@ var star_noise := FastNoiseLite.new()
 var stars_vacuumed := 0
 var ui_layer: CanvasLayer = null
 
-var zen_mode = true
+var zen_mode := true
+
+var played_once := false
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
