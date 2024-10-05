@@ -1,15 +1,16 @@
 class_name Region extends Node2D
 
 const STAR := preload("res://scenes/world/stars/star.tscn")
+const PLANET := preload("res://scenes/world/planets/planet.tscn")
 const SIZE := Vector2(1920, 1920)
 
 var desired_stars := 100
 var reg_position := Vector2()
 
 #
-#func _draw() -> void:
-	#draw_rect(Rect2(-SIZE/2, SIZE), Color(Color.PURPLE, 0.3))
-	#draw_rect(Rect2(-SIZE/2, SIZE), Color(Color.PURPLE), false)
+func _draw() -> void:
+	draw_rect(Rect2(-SIZE/2, SIZE), Color(Color.PURPLE, 0.3))
+	draw_rect(Rect2(-SIZE/2, SIZE), Color(Color.PURPLE), false)
 
 
 @warning_ignore("integer_division", "narrowing_conversion")
@@ -20,6 +21,9 @@ func _ready() -> void:
 		var s := create_star()
 		add_child(s)
 		s.position += (Vector2(randf_range(-SIZE.x/2, SIZE.x/2), randf_range(-SIZE.y/2, SIZE.y/2)))
+	if hash(reg_position) % 10 < 6 and reg_position != Vector2.ZERO:
+		var planet := create_planet()
+		add_child(planet)
 
 
 func save_removed_stars() -> void:
@@ -33,6 +37,11 @@ static func region_position(gpos: Vector2) -> Vector2:
 static func create_star() -> Star:
 	var star := STAR.instantiate()
 	return star
+
+
+static func create_planet() -> Planet:
+	var planet := PLANET.instantiate()
+	return planet
 
 
 static func stellar_explosion(source: SpaceFloater, amount: int, start_distance: float, impulse_mult: float) -> void:

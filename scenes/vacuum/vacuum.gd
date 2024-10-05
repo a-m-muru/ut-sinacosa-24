@@ -77,6 +77,9 @@ func _affect_stars(delta: float) -> void:
 		if not is_instance_valid(star):
 			_clean_affected()
 			return
+		if star is Planet:
+			star.vacuum_collision_response(self)
+			continue
 		var star_distance := star.global_position.distance_to(global_position)
 		star_distance /= vacuum_suck_shape.radius
 		#draw.connect(func():
@@ -92,6 +95,8 @@ func _affect_stars(delta: float) -> void:
 	for star in _affected_stars:
 		var star_distance := star.global_position.distance_squared_to(global_position)
 		if star_distance < 20:
+			if star is Planet:
+				continue
 			_star_exited(star)
 			_free_star(star)
 			break
