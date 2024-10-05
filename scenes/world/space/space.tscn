@@ -42,7 +42,6 @@ flip_h = true
 [node name="Vacuum" parent="." instance=ExtResource("1_5b2y4")]
 
 [node name="Camera2D" type="Camera2D" parent="Vacuum"]
-zoom = Vector2(0.515, 0.515)
 
 [node name="Regions" type="Node2D" parent="." node_paths=PackedStringArray("follow")]
 script = ExtResource("2_n8axi")
