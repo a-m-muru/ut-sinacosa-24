@@ -59,14 +59,7 @@ func _star_entered(star: Area2D) -> void:
 
 func _star_exited(star: SpaceFloater) -> void:
 	if star.scale.x > 1:
-		print(star.global_position)
-		for x in roundi(star.scale.x / 0.22):
-			var s := Region.create_star()
-			star.add_sibling(s)
-			s.position = star.position + Vector2.from_angle(randf() * TAU) * 70
-			s.apply_impulse((s.position - star.position) * 7)
-			s.scale *= 0.5
-			print("  ", s.global_position)
+		Region.stellar_explosion(star, roundi(star.scale.x / 0.22), 70, 7)
 	if star in _affected_stars:
 		_affected_stars.erase(star)
 

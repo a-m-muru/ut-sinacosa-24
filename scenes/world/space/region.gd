@@ -33,3 +33,12 @@ static func region_position(gpos: Vector2) -> Vector2:
 static func create_star() -> Star:
 	var star := STAR.instantiate()
 	return star
+
+
+static func stellar_explosion(source: SpaceFloater, amount: int, start_distance: float, impulse_mult: float) -> void:
+	for i in amount:
+		var s := Region.create_star()
+		source.add_sibling(s)
+		s.position = source.position + Vector2.from_angle(randf() * TAU) * start_distance
+		s.apply_impulse((s.position - source.position) * impulse_mult)
+		s.scale *= 0.5
