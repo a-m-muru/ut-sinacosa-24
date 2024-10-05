@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://rf32etlnquy3"]
 
-[ext_resource type="Script" path="res://scenes/InGameMenus/panel_setter.gd" id="1_1spne"]
+[ext_resource type="Script" path="res://scenes/gui/ingame_menus/panel_setter.gd" id="1_1spne"]
 
 [node name="UI Layer" type="CanvasLayer"]
 script = ExtResource("1_1spne")
