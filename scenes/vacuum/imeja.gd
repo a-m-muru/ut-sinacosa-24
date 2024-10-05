@@ -61,7 +61,6 @@ func _free_star(star: Star) -> void:
 	if not star in _affected_stars:
 		star.queue_free()
 		GLOBAL.stars_vacuumed += 1
-		print(GLOBAL.stars_vacuumed)
 
 
 func _affect_stars(delta: float) -> void:
