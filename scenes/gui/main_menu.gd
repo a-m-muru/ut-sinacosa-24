@@ -5,15 +5,15 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GLOBAL.reset_counters()
 	credits.visible = false
 	if (GLOBAL.played_once):
 		if (randf_range(1,5) > 3):
 			background.texture = load("res://scenes/gui/menu_background_alt.png")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("pause_game"):
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause_game"):
 		credits.visible = false
 
 
