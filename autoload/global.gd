@@ -20,6 +20,8 @@ var zen_mode := true
 var played_once := false
 var run_random: int
 
+var song_player := AudioStreamPlayer.new()
+
 
 func reset_counters() -> void:
 	remaining_stars = {}

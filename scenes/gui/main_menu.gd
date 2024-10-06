@@ -10,6 +10,10 @@ func _ready() -> void:
 		# fancy different menu art
 		if (randf_range(1,5) > 3):
 			background.texture = load("res://scenes/gui/menu_background_alt.png")
+	if not GLOBAL.song_player.get_parent():
+		GLOBAL.add_child(GLOBAL.song_player)
+		GLOBAL.song_player.stream = preload("res://scenes/world/space/background.ogg")
+		GLOBAL.song_player.play()
 
 
 func _unhandled_input(event: InputEvent) -> void:
