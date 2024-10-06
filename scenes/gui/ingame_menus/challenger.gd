@@ -7,6 +7,8 @@ class_name Challenger extends Control
 @onready var score_label: Label = %ScoreLabel
 @onready var star_collection_progress: ProgressBar = %StarCollectionProgress
 
+@onready var old_scores := get_scores()
+
 # hacky reference to regions used by GLOBAL
 @export var regions: Regions
 
@@ -22,6 +24,7 @@ func _ready() -> void:
 	GLOBAL.challenger = self
 	timer.timeout.connect(func() -> void: time += 1; display())
 	display()
+	print(get_scores())
 
 
 func add_score(amount: float) -> void:
@@ -68,6 +71,8 @@ func end_challenge() -> void:
 	timer.stop()
 	timer_label.modulate = Color.KHAKI
 	
+	save_score(score, time)
+	
 	# make the timer label flash yellow
 	var t := create_tween().set_loops(-1)
 	t.tween_callback(timer_label.set_modulate.bind(Color.KHAKI))
@@ -76,10 +81,36 @@ func end_challenge() -> void:
 	t.tween_interval(0.77)
 
 
-#static func get_scores() -> Array[Dictionary]:
-	#var scores := []
-	#var file := FileAccess.open("user://scores", FileAccess.READ)
-	#if not file:
-		#return scores
-	#while not file.eof_reached():
-		#scores.append({"points"})
+static func get_scores() -> Array:
+	var scores := []
+	var file := FileAccess.open("user://scores", FileAccess.READ)
+	if not file:
+		return scores
+	while file.get_position() < file.get_length():
+		var score := {}
+		score["time"] = file.get_64()
+		score["points"] = file.get_double()
+		scores.append(score)
+	return scores
+
+
+static func save_score(points: float, time: int) -> void:
+	if not FileAccess.file_exists("user://scores"):
+		FileAccess.open("user://scores", FileAccess.WRITE).close()
+	var file := FileAccess.open("user://scores", FileAccess.READ_WRITE)
+	file.seek_end()
+	file.store_64(time)
+	file.store_double(points)
+	file.close()
+
+
+static func sort_scores_by_time(scores: Array) -> void:
+	scores.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return a["time"] > b["time"]
+	)
+
+
+static func sort_scores_by_points(scores: Array) -> void:
+	scores.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return a["points"] > b["points"]
+	)
