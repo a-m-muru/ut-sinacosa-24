@@ -121,6 +121,8 @@ offset_bottom = -3.0
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(2.23342, 2.73509)
+max_value = 1.0
+step = 0.01
 
 [node name="VolumeSound" type="AudioStreamPlayer" parent="Pause panel/Panel/Volume Slider"]
 stream = ExtResource("10_66eth")

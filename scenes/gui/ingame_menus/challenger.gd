@@ -74,3 +74,12 @@ func end_challenge() -> void:
 	t.tween_interval(0.77)
 	t.tween_callback(timer_label.set_modulate.bind(Color.GOLD))
 	t.tween_interval(0.77)
+
+
+#static func get_scores() -> Array[Dictionary]:
+	#var scores := []
+	#var file := FileAccess.open("user://scores", FileAccess.READ)
+	#if not file:
+		#return scores
+	#while not file.eof_reached():
+		#scores.append({"points"})
