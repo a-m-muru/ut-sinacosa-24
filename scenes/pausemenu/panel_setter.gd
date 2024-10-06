@@ -61,4 +61,5 @@ func _on_quit_button_g_pressed() -> void:
 
 func _on_retry_button_pressed() -> void:
 	if (game_over_panel.visible):
+		GLOBAL.reset_counters()
 		get_tree().change_scene_to_packed(load("res://scenes/world/space/space.tscn"))

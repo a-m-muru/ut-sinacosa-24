@@ -111,4 +111,19 @@ scale = Vector2(0.1875, 4.60938)
 texture = ExtResource("1_wmxbm")
 
 [node name="Planet" parent="." instance=ExtResource("2_b7ntp")]
-position = Vector2(575, 331)
+position = Vector2(254, 95)
+
+[node name="Planet2" parent="." instance=ExtResource("2_b7ntp")]
+position = Vector2(588, 99)
+
+[node name="Planet3" parent="." instance=ExtResource("2_b7ntp")]
+position = Vector2(958, 101)
+
+[node name="Planet4" parent="." instance=ExtResource("2_b7ntp")]
+position = Vector2(978, 435)
+
+[node name="Planet5" parent="." instance=ExtResource("2_b7ntp")]
+position = Vector2(601, 440)
+
+[node name="Planet6" parent="." instance=ExtResource("2_b7ntp")]
+position = Vector2(244, 433)

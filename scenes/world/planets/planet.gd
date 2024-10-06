@@ -8,6 +8,8 @@ const EYE_TEXTURES := [
 	preload("res://scenes/world/planets/big.2.5.e.png"),
 	preload("res://scenes/world/planets/big.2.e.png"),
 	preload("res://scenes/world/planets/big.3.f.png"),
+	preload("res://scenes/world/planets/big..4.e.png"),
+	preload("res://scenes/world/planets/big.5.f.png")
 ]
 
 const BODY_TEXTURES := [
@@ -16,6 +18,8 @@ const BODY_TEXTURES := [
 	preload("res://scenes/world/planets/big.2.5.f.png"),
 	preload("res://scenes/world/planets/big.2.f.png"),
 	preload("res://scenes/world/planets/big.3.e.png"),
+	preload("res://scenes/world/planets/big.4.f.png"),
+	preload("res://scenes/world/planets/big.5.e.png"),
 ]
 
 @onready var body: Sprite2D = $Body

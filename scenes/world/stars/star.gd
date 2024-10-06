@@ -10,6 +10,16 @@ const EYE_TEXTURES := [
 	preload("res://scenes/world/stars/3.e.png"),
 	preload("res://scenes/world/stars/small.3.e.png"),
 	preload("res://scenes/world/stars/small.4.e.png"),
+	preload("res://scenes/world/stars/more_faces/0007_Layer-28.png"),
+	preload("res://scenes/world/stars/more_faces/0009_Layer-25.png"),
+	preload("res://scenes/world/stars/more_faces/0011_Layer-23.png"),
+	preload("res://scenes/world/stars/more_faces/0013_Layer-21.png"),
+	preload("res://scenes/world/stars/more_faces/0014_Layer-20.png"),
+ 	preload("res://scenes/world/stars/more_faces/0016_Layer-17.png"),
+	preload("res://scenes/world/stars/more_faces/0020_Layer-13.png"),
+	preload("res://scenes/world/stars/more_faces/0021_Layer-12.png"),
+	preload("res://scenes/world/stars/more_faces/0022_Layer-11.png"),
+	preload("res://scenes/world/stars/more_faces/0023_Layer-10.png"),
 ]
 const MOUTH_TEXTURES := [
 	preload("res://scenes/world/stars/1..png"),
@@ -17,10 +27,31 @@ const MOUTH_TEXTURES := [
 	preload("res://scenes/world/stars/2 (2).png"),
 	preload("res://scenes/world/stars/3.m.png"),
 	preload("res://scenes/world/stars/small.3.m.png"),
+	preload("res://scenes/world/stars/more_faces/0005_Layer-30.png"),
+	preload("res://scenes/world/stars/more_faces/0006_Layer-29.png"),
+	preload("res://scenes/world/stars/more_faces/0010_Layer-24.png"),
+	preload("res://scenes/world/stars/more_faces/0012_Layer-22.png"),
+	preload("res://scenes/world/stars/more_faces/0017_Layer-16.png"),
+	preload("res://scenes/world/stars/more_faces/0018_Layer-15.png"),
+	preload("res://scenes/world/stars/more_faces/0025_Layer-8.png"),
+	preload("res://scenes/world/stars/more_faces/0026_Layer-7.png"),
+	preload("res://scenes/world/stars/more_faces/0027_Layer-6.png"),
+	preload("res://scenes/world/stars/more_faces/0028_Layer-5.png"),
+	preload("res://scenes/world/stars/more_faces/0029_Layer-4.png"),
+	preload("res://scenes/world/stars/more_faces/0030_Layer-3.png"),
+	preload("res://scenes/world/stars/more_faces/0031_Layer-2.png"),
+	preload("res://scenes/world/stars/more_faces/0032_Layer-1.png"),
 ]
 const BACKGROUND_TEXTURES := [
 	preload("res://scenes/world/stars/background.small.png"),
 	preload("res://scenes/world/stars/background.circle.png"),
+]
+const HAIR_TEXTURES := [
+	preload("res://scenes/world/stars/more_faces/Untitled-1-Recovered.psd_0000_martin.png"),
+	preload("res://scenes/world/stars/more_faces/Untitled-1-Recovered.psd_0001_raili.png"),
+	preload("res://scenes/world/stars/more_faces/Untitled-1-Recovered.psd_0002_gaabu.png"),
+	preload("res://scenes/world/stars/more_faces/Untitled-1-Recovered.psd_0003_helen.png"),
+	preload("res://scenes/world/stars/more_faces/Untitled-1-Recovered.psd_0004_egon.png"),
 ]
 const COLORS := [
 	Color(0.85, 0.883, 0.913),
@@ -32,6 +63,7 @@ const COLORS := [
 
 @onready var background: Sprite2D = $Background
 @onready var mouth: Sprite2D = $Face/Mouth
+@onready var hair: Sprite2D = $Hair
 @onready var eyes: Sprite2D = $Face/Eyes
 @onready var blink_timer: Timer = $BlinkTimer
 @onready var glow := $Glow
@@ -50,6 +82,10 @@ func _ready() -> void:
 	# chonky star
 	if randf() < 0.1:
 		background.texture = BACKGROUND_TEXTURES[1]
+	else:
+		if randf() < 0.01:
+			hair.texture = HAIR_TEXTURES.pick_random()
+		
 	if randf() < 0.02:
 		scale *= randfn(2, 1)
 	
@@ -57,6 +93,7 @@ func _ready() -> void:
 	# some stars don't have predetermined colours for more interesting variety
 	if randf() < 0.05:
 		color = Color(randf(), randf(), randf())
+	
 	glow.modulate = color
 	glow_front.modulate = color
 
