@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Vacuum Decay"
 config/description="A game made in UT GameJam October 2024."
-config/version="1.0.0.2024"
+config/version="1.0.0"
 run/main_scene="res://scenes/gui/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
