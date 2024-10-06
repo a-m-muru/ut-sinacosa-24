@@ -1,5 +1,6 @@
 extends Node
 
+# holds miscellaneous globally accessible things
 
 # this is used to save how many stars should still be in a region.
 # regions load their desired star generation counts from here.

@@ -16,6 +16,11 @@ func _exit_tree() -> void:
 	GLOBAL.ui_layer = null
 
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause_game") and pause_panel.visible:
+		call_panel.call_deferred()
+
+
 func call_panel(gameover = false) -> void:
 	current_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed)
 	if (!game_over_panel.visible):
@@ -31,7 +36,9 @@ func call_panel(gameover = false) -> void:
 		else: #If the player presses the escape key.
 			if (pause_panel.visible):
 				pause_panel.visible = false
+				get_tree().paused = false
 			else:
+				get_tree().paused = true
 				pause_panel.visible = true
 
 
@@ -42,7 +49,7 @@ func _on_quit_button_p_pressed() -> void:
 
 func _on_resume_button_pressed() -> void:
 	if (pause_panel.visible):
-		pause_panel.visible = false
+		call_panel()
 
 
 func _on_quit_button_g_pressed() -> void:
