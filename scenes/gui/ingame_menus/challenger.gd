@@ -26,6 +26,7 @@ func _ready() -> void:
 
 func add_score(amount: float) -> void:
 	score += amount
+	score = maxf(score, 0)
 	display()
 	
 	# pulse the score text to draw attention to it

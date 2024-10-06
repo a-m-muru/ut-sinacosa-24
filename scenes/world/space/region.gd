@@ -4,6 +4,7 @@ class_name Region extends Node2D
 
 const STAR := preload("res://scenes/world/stars/star.tscn")
 const PLANET := preload("res://scenes/world/planets/planet.tscn")
+const TRASH := preload("res://scenes/world/trash/trash.tscn")
 const SIZE := Vector2(1920, 1920)
 
 var desired_stars := 100
@@ -26,8 +27,13 @@ func _ready() -> void:
 		add_child(s)
 		# random position in the bounds of the region
 		s.position += (Vector2(randf_range(-SIZE.x/2, SIZE.x/2), randf_range(-SIZE.y/2, SIZE.y/2)))
+	if reg_position != Vector2.ZERO:
+		for j in 5:
+			var trash := create_trash()
+			add_child(trash)
+			trash.position += (Vector2(randf_range(-SIZE.x/2, SIZE.x/2), randf_range(-SIZE.y/2, SIZE.y/2)))
 	# spawn planets in the centers of some regions
-	if hash(reg_position) % 10 < 6 and reg_position != Vector2.ZERO:
+	if (hash(reg_position) + GLOBAL.run_random) % 10 < 6 and reg_position != Vector2.ZERO:
 		var planet := create_planet()
 		add_child(planet)
 
@@ -50,6 +56,12 @@ static func create_star() -> Star:
 static func create_planet() -> Planet:
 	var planet := PLANET.instantiate()
 	return planet
+
+
+static func create_trash() -> Trash:
+	var trash := TRASH.instantiate()
+	trash.direction = Vector2(randf(), randf()) * randf_range(-1, 1) * 32
+	return trash
 
 
 static func stellar_explosion(

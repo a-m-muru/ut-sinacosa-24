@@ -73,17 +73,30 @@ func _star_entered(star: Area2D) -> void:
 
 
 func _star_exited(floater: SpaceFloater) -> void:
+	if floater in _affected_stars:
+		_affected_stars.erase(floater)
 	if floater is Star:
 		# bigger stars explode into smaller ones
 		if floater.scale.x > 1:
 			star_explode_sound.play()
 			Region.stellar_explosion(floater, roundi(floater.scale.x / 0.22), 70, 7)
-	if floater in _affected_stars:
-		_affected_stars.erase(floater)
+		return
 
 
 func _free_star(star: SpaceFloater) -> void:
 	# do not free planets
+	if star is Trash:
+		star.apply_impulse(Vector2.from_angle(randf() * TAU) * 840)
+		star.noise.play()
+		var tw := star.create_tween()
+		tw.tween_property(star.particles, "amount_ratio", 0.0, 2.0).from(1.0)
+		add_score(-10)
+		var t := create_tween().set_trans(Tween.TRANS_BOUNCE)
+		t.tween_property(vacuum_noise, "pitch_scale", randf() + 0.8, randf())
+		t.tween_property(vacuum_noise, "pitch_scale", randf() + 0.8, randf())
+		t.tween_property(vacuum_noise, "pitch_scale", randf() + 0.8, randf())
+		t.tween_property(vacuum_noise, "pitch_scale", randf() + 0.8, randf())
+		return
 	if not star is Star:
 		return
 	if not star in _affected_stars:
@@ -114,6 +127,7 @@ func _affect_stars(delta: float) -> void:
 		if star is Planet:
 			star.vacuum_collision_response(self)
 			continue
+		
 		#draw.connect(func():
 			#draw_circle(Vector2.ZERO, 1, Color.AQUA)
 			#draw_rect(Rect2(to_local(star.global_position), Vector2(4, -star_distance * 12)), Color.WHITE)
