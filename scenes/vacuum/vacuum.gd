@@ -20,6 +20,9 @@ const DISTANCE_STAR_CURVE := preload("res://scenes/vacuum/distance_star_curve.tr
 @onready var vacuum_suck_shape: CircleShape2D = $CollectionArea/CollisionShape2D.shape
 @onready var sprite: Sprite2D = $Sprite
 @onready var particles: GPUParticles2D = $Sprite/Particles
+@onready var vacuum_noise: AudioStreamPlayer2D = $VacuumNoise
+@onready var star_collect_sound: AudioStreamPlayer2D = $StarCollectSound
+@onready var star_explode_sound: AudioStreamPlayer2D = $StarExplodeSound
 
 var move_speed := MOVE_SPEED
 var _affected_stars: Array[SpaceFloater] = []
@@ -52,6 +55,7 @@ func _physics_process(delta: float) -> void:
 				velocity = velocity.move_toward(Vector2.ZERO, delta * DECEL)
 				
 			process_particles()
+			vacuum_noise.pitch_scale = maxf(0.1, velocity.length_squared()) / MOVE_SPEED**2
 	
 			move_and_slide()
 	
@@ -72,6 +76,7 @@ func _star_exited(floater: SpaceFloater) -> void:
 	if floater is Star:
 		# bigger stars explode into smaller ones
 		if floater.scale.x > 1:
+			star_explode_sound.play()
 			Region.stellar_explosion(floater, roundi(floater.scale.x / 0.22), 70, 7)
 	if floater in _affected_stars:
 		_affected_stars.erase(floater)
@@ -83,6 +88,7 @@ func _free_star(star: SpaceFloater) -> void:
 		return
 	if not star in _affected_stars:
 		var tw := create_tween()
+		star_collect_sound.play()
 		GLOBAL.stars_vacuumed += 1
 		add_score(star.scale.x)
 		tw.tween_property(star, "scale", Vector2.ZERO, 0.1)

@@ -21,6 +21,8 @@ const BODY_TEXTURES := [
 @onready var body: Sprite2D = $Body
 @onready var eyes: Sprite2D = $Eyes
 @onready var blink_timer: Timer = $BlinkTimer
+@onready var bump_sound: AudioStreamPlayer2D = $BumpSound
+@onready var explode_sound: AudioStreamPlayer2D = $ExplodeSound
 
 
 func _ready() -> void:
@@ -37,8 +39,12 @@ func vacuum_collision_response(vacuum: Vacuum) -> void:
 	var away_direction := (global_position - vacuum.global_position).normalized()
 	apply_impulse(away_direction * 170.0)
 	rotation_direction *= 2.0
+	bump_sound.play()
 	# planets spinning too fast break apart
 	if absf(rotation_direction) >= 30:
+		remove_child(explode_sound)
+		add_sibling(explode_sound)
+		explode_sound.play()
 		Region.stellar_explosion(self, 60, 30, 16, Vector2(-6, 6))
 		queue_free()
 
