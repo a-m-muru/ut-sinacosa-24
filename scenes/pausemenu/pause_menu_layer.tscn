@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://rf32etlnquy3"]
+[gd_scene load_steps=17 format=3 uid="uid://rf32etlnquy3"]
 
 [ext_resource type="Script" path="res://scenes/pausemenu/panel_setter.gd" id="1_twdw8"]
 [ext_resource type="Texture2D" uid="uid://bhnaaypk8ty8v" path="res://scenes/pausemenu/pause_icon.png" id="2_jpxo0"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c0lfm15wvs68c" path="res://scenes/gui/retry_normal.png" id="9_rmjqq"]
 [ext_resource type="Texture2D" uid="uid://xta7khnnel1k" path="res://scenes/gui/retry_pressed.png" id="10_0rt73"]
 [ext_resource type="Texture2D" uid="uid://ccwxdv57ugo32" path="res://scenes/gui/volume.png" id="10_7e4w8"]
+[ext_resource type="AudioStream" uid="uid://bvg7pvtpbmvg7" path="res://scenes/world/stars/collect_1.ogg" id="10_66eth"]
 [ext_resource type="Texture2D" uid="uid://t7021nuvvt6d" path="res://scenes/gui/retry_hover.png" id="11_juwr2"]
 
 [sub_resource type="Theme" id="Theme_v6p1j"]
@@ -120,6 +121,9 @@ offset_bottom = -3.0
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(2.23342, 2.73509)
+
+[node name="VolumeSound" type="AudioStreamPlayer" parent="Pause panel/Panel/Volume Slider"]
+stream = ExtResource("10_66eth")
 
 [node name="TextureRect" type="TextureRect" parent="Pause panel/Panel"]
 layout_mode = 1
