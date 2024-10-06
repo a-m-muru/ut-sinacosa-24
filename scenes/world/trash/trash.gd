@@ -12,6 +12,7 @@ const TEXTURES := [
 
 @onready var image: Sprite2D = $Image
 @onready var particles: GPUParticles2D = $GPUParticles2D
+@onready var noise: AudioStreamPlayer2D = $TrashNoise
 
 
 func _ready() -> void:

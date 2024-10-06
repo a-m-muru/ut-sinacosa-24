@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://6jt67fdb2lme"]
+[gd_scene load_steps=11 format=3 uid="uid://6jt67fdb2lme"]
 
 [ext_resource type="Script" path="res://scenes/world/trash/trash.gd" id="1_fftf8"]
 [ext_resource type="Texture2D" uid="uid://dx5h105sy7cx7" path="res://scenes/world/trash/trash_0001_helmet.png" id="2_0lbx5"]
 [ext_resource type="Texture2D" uid="uid://dyxhlyw2x1m7u" path="res://scenes/world/particles/smoke/smoke_1_008.png" id="3_arx4x"]
+[ext_resource type="AudioStream" uid="uid://b8lqu30g5eiul" path="res://scenes/world/trash/trash.ogg" id="4_rnk3w"]
 
 [sub_resource type="Curve" id="Curve_dkjpx"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0815348, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -26,6 +27,11 @@ alpha_curve = SubResource("CurveTexture_au0va")
 [sub_resource type="CircleShape2D" id="CircleShape2D_ufone"]
 radius = 16.1245
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o14xr"]
+random_pitch = 1.31
+streams_count = 1
+stream_0/stream = ExtResource("4_rnk3w")
+
 [node name="Trash" type="Area2D"]
 collision_layer = 8
 collision_mask = 0
@@ -37,6 +43,7 @@ rotation_range = Vector2(-0.195, 2.505)
 amount = 60
 process_material = SubResource("ParticleProcessMaterial_llmdh")
 texture = ExtResource("3_arx4x")
+visibility_rect = Rect2(-499, -499, 1000, 1000)
 
 [node name="Image" type="Sprite2D" parent="."]
 texture = ExtResource("2_0lbx5")
@@ -71,3 +78,8 @@ texture = ExtResource("2_0lbx5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ufone")
+
+[node name="TrashNoise" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_o14xr")
+attenuation = 8.57419
+panning_strength = 1.7
