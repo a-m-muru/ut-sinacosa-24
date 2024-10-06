@@ -70,6 +70,7 @@ const COLORS := [
 @onready var glow_front := $Glow2
 @onready var face: Node2D = $Face
 @onready var visibility_notif: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var audio: AudioStreamPlayer2D = $Aaaaa
 
 
 func _ready() -> void:

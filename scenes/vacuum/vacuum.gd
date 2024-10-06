@@ -145,6 +145,8 @@ func _affect_stars(delta: float) -> void:
 	# gobble up close enough stars
 	for star in _affected_stars:
 		var star_distance := star.global_position.distance_squared_to(global_position)
+		if star is Star and star_distance < 81 and randf() < 0.05:
+			star.audio.play()
 		if star_distance < 20:
 			_star_exited(star)
 			_free_star(star)
