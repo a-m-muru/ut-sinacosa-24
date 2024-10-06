@@ -14,6 +14,7 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	GLOBAL.ui_layer = null
+	get_tree().paused = false
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
