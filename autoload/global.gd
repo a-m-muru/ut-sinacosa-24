@@ -9,7 +9,6 @@ var remaining_stars := {}
 var stars_per_level := 400
 var total_stars_vacuumed := 0 # updated in zen mode only
 var stars_vacuumed := 0
-var prev_volume := 100
 
 var ui_layer: UI
 var challenger: Challenger
@@ -42,4 +41,4 @@ func check_star_completion() -> void:
 
 
 func set_audio_volume(value: float) -> void:
-	AudioServer.set_bus_volume_db(0, value)
+	AudioServer.set_bus_volume_db(0, linear_to_db(value))
