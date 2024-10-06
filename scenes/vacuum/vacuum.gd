@@ -78,6 +78,9 @@ func _star_exited(floater: SpaceFloater) -> void:
 		if floater.scale.x > 1:
 			star_explode_sound.play()
 			Region.stellar_explosion(floater, roundi(floater.scale.x / 0.22), 70, 7)
+	elif floater is Trash:
+		print("asasa")
+		floater.apply_impulse(Vector2.from_angle(randf() * TAU) * 40)
 	if floater in _affected_stars:
 		_affected_stars.erase(floater)
 

@@ -73,3 +73,4 @@ mouse_press={
 2d_physics/layer_1="vacuum"
 2d_physics/layer_2="star"
 2d_physics/layer_3="planet"
+2d_physics/layer_4="trash"

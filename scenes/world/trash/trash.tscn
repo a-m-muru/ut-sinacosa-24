@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://6jt67fdb2lme"]
+
+[ext_resource type="Script" path="res://scenes/world/trash/trash.gd" id="1_fftf8"]
+[ext_resource type="Texture2D" uid="uid://dx5h105sy7cx7" path="res://scenes/world/trash/trash_0001_helmet.png" id="2_0lbx5"]
+[ext_resource type="Texture2D" uid="uid://dyxhlyw2x1m7u" path="res://scenes/world/particles/smoke/smoke_1_008.png" id="3_arx4x"]
+
+[sub_resource type="Curve" id="Curve_dkjpx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0815348, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_au0va"]
+width = 64
+curve = SubResource("Curve_dkjpx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_llmdh"]
+particle_flag_disable_z = true
+angle_min = -359.2
+angle_max = 359.2
+spread = 180.0
+initial_velocity_max = 83.89
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_au0va")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tvtv7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ufone"]
+radius = 16.1245
+
+[node name="Trash" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_fftf8")
+scale_range = Vector2(0.96, 1.025)
+rotation_range = Vector2(-0.195, 2.505)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_llmdh")
+texture = ExtResource("3_arx4x")
+
+[node name="Image" type="Sprite2D" parent="."]
+texture = ExtResource("2_0lbx5")
+
+[node name="Outline1" type="Sprite2D" parent="Image"]
+modulate = Color(0.50254, 9.62615e-08, 0.268965, 1)
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_tvtv7")
+position = Vector2(-2, 0)
+texture = ExtResource("2_0lbx5")
+
+[node name="Outline2" type="Sprite2D" parent="Image"]
+modulate = Color(0.50254, 9.62615e-08, 0.268965, 1)
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_tvtv7")
+position = Vector2(0, 2)
+texture = ExtResource("2_0lbx5")
+
+[node name="Outline3" type="Sprite2D" parent="Image"]
+modulate = Color(0.50254, 9.62615e-08, 0.268965, 1)
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_tvtv7")
+position = Vector2(2, 0)
+texture = ExtResource("2_0lbx5")
+
+[node name="Outline4" type="Sprite2D" parent="Image"]
+modulate = Color(0.50254, 9.62615e-08, 0.268965, 1)
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_tvtv7")
+position = Vector2(0, -2)
+texture = ExtResource("2_0lbx5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ufone")
