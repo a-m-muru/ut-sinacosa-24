@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://rf32etlnquy3"]
+[gd_scene load_steps=16 format=3 uid="uid://rf32etlnquy3"]
 
 [ext_resource type="Script" path="res://scenes/pausemenu/panel_setter.gd" id="1_twdw8"]
 [ext_resource type="Texture2D" uid="uid://bhnaaypk8ty8v" path="res://scenes/pausemenu/pause_icon.png" id="2_jpxo0"]
@@ -9,8 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://cqrxpif0rq00y" path="res://scenes/gui/Resume_Pressed.png" id="7_y7ypn"]
 [ext_resource type="FontFile" uid="uid://ck46vwy1hmbit" path="res://scenes/gui/BAD.ttf" id="8_fsxsq"]
 [ext_resource type="Texture2D" uid="uid://dggs88nws8rfy" path="res://scenes/pausemenu/end_icon.png" id="8_g87hr"]
+[ext_resource type="Script" path="res://scenes/gui/volume_slider.gd" id="9_54u4b"]
 [ext_resource type="Texture2D" uid="uid://c0lfm15wvs68c" path="res://scenes/gui/retry_normal.png" id="9_rmjqq"]
 [ext_resource type="Texture2D" uid="uid://xta7khnnel1k" path="res://scenes/gui/retry_pressed.png" id="10_0rt73"]
+[ext_resource type="Texture2D" uid="uid://ccwxdv57ugo32" path="res://scenes/gui/volume.png" id="10_7e4w8"]
 [ext_resource type="Texture2D" uid="uid://t7021nuvvt6d" path="res://scenes/gui/retry_hover.png" id="11_juwr2"]
 
 [sub_resource type="Theme" id="Theme_v6p1j"]
@@ -91,6 +93,54 @@ theme_override_fonts/font = ExtResource("8_fsxsq")
 theme_override_font_sizes/font_size = 86
 text = "Stars Collected: 0"
 
+[node name="Panel" type="Panel" parent="Pause panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = -134.0
+offset_right = 433.0
+offset_bottom = -28.0
+grow_vertical = 0
+script = ExtResource("9_54u4b")
+
+[node name="Volume Slider" type="HSlider" parent="Pause panel/Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -19.0
+offset_right = -165.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.23342, 2.73509)
+
+[node name="TextureRect" type="TextureRect" parent="Pause panel/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -53.0
+offset_right = 107.0
+offset_bottom = 53.0
+grow_vertical = 2
+texture = ExtResource("10_7e4w8")
+
+[node name="MuteButton" type="Button" parent="Pause panel/Panel/TextureRect"]
+self_modulate = Color(1, 1, 1, 0.529412)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Game Over panel" type="Panel" parent="."]
 visible = false
 self_modulate = Color(0, 0, 0, 1)
@@ -166,5 +216,7 @@ text = "Stars Collected: 0"
 
 [connection signal="pressed" from="Pause panel/Quit Button P" to="." method="_on_quit_button_p_pressed"]
 [connection signal="pressed" from="Pause panel/Resume Button" to="." method="_on_resume_button_pressed"]
+[connection signal="value_changed" from="Pause panel/Panel/Volume Slider" to="Pause panel/Panel" method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="Pause panel/Panel/TextureRect/MuteButton" to="Pause panel/Panel" method="_on_mute_button_pressed"]
 [connection signal="pressed" from="Game Over panel/Quit Button G" to="." method="_on_quit_button_g_pressed"]
 [connection signal="pressed" from="Game Over panel/Retry Button" to="." method="_on_retry_button_pressed"]

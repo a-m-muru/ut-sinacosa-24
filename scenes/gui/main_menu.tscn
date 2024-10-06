@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://crxjn34sk5jfm"]
+[gd_scene load_steps=24 format=3 uid="uid://crxjn34sk5jfm"]
 
 [ext_resource type="Theme" uid="uid://c8o0eqhos064x" path="res://scenes/gui/main_theme.tres" id="1_xne3j"]
 [ext_resource type="Texture2D" uid="uid://ks3dbfh64ls2" path="res://scenes/gui/title.png" id="3_j3ykq"]
@@ -20,6 +20,8 @@
 [ext_resource type="FontFile" uid="uid://ck46vwy1hmbit" path="res://scenes/gui/BAD.ttf" id="19_mk422"]
 [ext_resource type="Texture2D" uid="uid://dwkgyyxnbbphc" path="res://scenes/gui/return_normal.png" id="19_o2mtl"]
 [ext_resource type="Texture2D" uid="uid://bf7b24ldyv58f" path="res://scenes/gui/return_pressed.png" id="20_jj5vv"]
+[ext_resource type="Script" path="res://scenes/gui/volume_slider.gd" id="21_66thf"]
+[ext_resource type="Texture2D" uid="uid://ccwxdv57ugo32" path="res://scenes/gui/volume.png" id="21_nkhq2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_slfa5"]
 blend_mode = 3
@@ -172,8 +174,58 @@ grow_vertical = 0
 texture_normal = ExtResource("19_o2mtl")
 texture_pressed = ExtResource("20_jj5vv")
 
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -138.0
+offset_right = 427.0
+offset_bottom = -32.0
+grow_vertical = 0
+script = ExtResource("21_66thf")
+
+[node name="Volume Slider" type="HSlider" parent="Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -19.0
+offset_right = -165.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.23342, 2.73509)
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -53.0
+offset_right = 107.0
+offset_bottom = 53.0
+grow_vertical = 2
+texture = ExtResource("21_nkhq2")
+
+[node name="MuteButton" type="Button" parent="Panel/TextureRect"]
+self_modulate = Color(1, 1, 1, 0.529412)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Play_Challenge Button" to="." method="_on_play_challenge_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Play_Relax Button" to="." method="_on_play_relax_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Credits Button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Credits/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="Panel/Volume Slider" to="Panel" method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="Panel/TextureRect/MuteButton" to="Panel" method="_on_mute_button_pressed"]
