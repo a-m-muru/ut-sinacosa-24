@@ -39,7 +39,7 @@ func call_panel(gameover = false) -> void:
 				if old_scores.is_empty() or final_score["points"] < old_scores.front()["points"]:
 					final_score_label.text += "\nHIGH SCORE!!" 
 				
-				final_score_label.add_theme_font_size_override("font_size", 64)
+				final_score_label.add_theme_font_size_override("font_size", 48)
 				final_score_label.text += "\nConsumption score: %02.1f" % (GLOBAL.challenger.score * 10)
 				final_score_label.text += "\nFinal Time: " + Challenger.get_time_text(GLOBAL.challenger.time)
 				GLOBAL.challenger.hide()

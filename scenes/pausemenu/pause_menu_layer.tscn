@@ -24,6 +24,7 @@ process_mode = 3
 script = ExtResource("1_twdw8")
 
 [node name="Pause panel" type="Panel" parent="."]
+visible = false
 self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,7 +149,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Game Over panel" type="Panel" parent="."]
-visible = false
 self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0
