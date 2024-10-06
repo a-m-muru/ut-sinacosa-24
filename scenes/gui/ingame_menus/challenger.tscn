@@ -34,11 +34,15 @@ grow_horizontal = 2
 [node name="Timer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Timer"]
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Timer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "TIME"
-label_settings = SubResource("LabelSettings_07y35")
-horizontal_alignment = 1
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("4_vxj2t")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]T[font=res://scenes/gui/Montserrat-Medium.ttf]IME[/font][/center]"
 
 [node name="TimerLabel" type="Label" parent="VBoxContainer/Timer"]
 unique_name_in_owner = true
