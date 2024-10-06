@@ -30,7 +30,16 @@ func call_panel(gameover = false) -> void:
 			final_score_label.text = "Stars collected: " + str(sc) + "/" + str(GLOBAL.stars_per_level)
 			# add to the score display when we're finishing a challenge mode game
 			if GLOBAL.challenger:
-				final_score_label.add_theme_font_size_override("font_size", 72)
+				var final_score: Dictionary = Challenger.get_scores().back()
+				var old_scores := GLOBAL.challenger.old_scores
+				Challenger.sort_scores_by_time(old_scores)
+				if old_scores.is_empty() or final_score["time"] < old_scores.front()["time"]:
+					final_score_label.text += "\nBEST TIME!!"
+				Challenger.sort_scores_by_points(old_scores)
+				if old_scores.is_empty() or final_score["points"] < old_scores.front()["points"]:
+					final_score_label.text += "\nHIGH SCORE!!" 
+				
+				final_score_label.add_theme_font_size_override("font_size", 64)
 				final_score_label.text += "\nConsumption score: %02.1f" % (GLOBAL.challenger.score * 10)
 				final_score_label.text += "\nFinal Time: " + Challenger.get_time_text(GLOBAL.challenger.time)
 				GLOBAL.challenger.hide()

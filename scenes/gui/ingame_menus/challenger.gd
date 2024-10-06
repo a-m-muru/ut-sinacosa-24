@@ -24,7 +24,6 @@ func _ready() -> void:
 	GLOBAL.challenger = self
 	timer.timeout.connect(func() -> void: time += 1; display())
 	display()
-	print(get_scores())
 
 
 func add_score(amount: float) -> void:
@@ -106,7 +105,7 @@ static func save_score(points: float, time: int) -> void:
 
 static func sort_scores_by_time(scores: Array) -> void:
 	scores.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
-		return a["time"] > b["time"]
+		return a["time"] < b["time"]
 	)
 
 

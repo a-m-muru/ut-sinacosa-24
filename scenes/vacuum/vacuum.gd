@@ -33,7 +33,7 @@ var state := States.MOVABLE
 func _ready() -> void:
 	collection_area.area_entered.connect(_star_entered)
 	var t := create_tween()
-	t.tween_interval(3.0)
+	t.tween_interval(2.0)
 	t.tween_property(tutorial, "modulate:a", 0.0, 2.0)
 	t.tween_callback(tutorial.queue_free)
 

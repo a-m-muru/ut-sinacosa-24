@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://caj1gvhuhkxta"]
+
+[node name="ScoreDisplay" type="HBoxContainer"]
+alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Time: "
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Score:"
