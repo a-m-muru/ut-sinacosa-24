@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://b15m1keqts6qx"]
+[gd_scene load_steps=24 format=3 uid="uid://b15m1keqts6qx"]
 
 [ext_resource type="Texture2D" uid="uid://i4weq57vmlk" path="res://scenes/vacuum/imeja.png" id="1_w3syo"]
 [ext_resource type="Script" path="res://scenes/vacuum/vacuum.gd" id="2_fsomt"]
 [ext_resource type="Texture2D" uid="uid://d1ifw7mcqxc5p" path="res://scenes/world/particles/smoke/smoke_1_003.png" id="3_ojfy2"]
+[ext_resource type="Texture2D" uid="uid://cog0t3ce18ngi" path="res://scenes/gui/keys_tutorial.png" id="4_g08p4"]
 [ext_resource type="AudioStream" uid="uid://lbgovni6xmpx" path="res://scenes/vacuum/vacuum_loop.ogg" id="4_xuy6g"]
 [ext_resource type="AudioStream" uid="uid://bvg7pvtpbmvg7" path="res://scenes/world/stars/collect_1.ogg" id="5_4lbng"]
+[ext_resource type="Texture2D" uid="uid://bfk3o746u47bl" path="res://scenes/gui/mouse_tutorial.png" id="5_1708l"]
 [ext_resource type="AudioStream" uid="uid://d220fwcje0e02" path="res://scenes/world/stars/collect_2.ogg" id="6_3fie8"]
 [ext_resource type="AudioStream" uid="uid://bc7wn6np2iett" path="res://scenes/world/stars/collect_3.ogg" id="7_y2lyo"]
 [ext_resource type="AudioStream" uid="uid://drr3b16limv3c" path="res://scenes/world/stars/collect_4.ogg" id="8_07qua"]
@@ -85,6 +87,17 @@ amount = 128
 process_material = SubResource("ParticleProcessMaterial_tbeob")
 texture = ExtResource("3_ojfy2")
 lifetime = 2.0
+
+[node name="Tutorial" type="Sprite2D" parent="Sprite"]
+position = Vector2(-54, -141)
+scale = Vector2(0.701764, 0.701764)
+texture = ExtResource("4_g08p4")
+
+[node name="Tutorial2" type="Sprite2D" parent="Sprite/Tutorial"]
+position = Vector2(127, -54)
+scale = Vector2(0.581099, 0.581099)
+texture = ExtResource("5_1708l")
+flip_h = true
 
 [node name="CollectionArea" type="Area2D" parent="."]
 collision_layer = 0

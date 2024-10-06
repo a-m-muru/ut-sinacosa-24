@@ -23,6 +23,7 @@ const DISTANCE_STAR_CURVE := preload("res://scenes/vacuum/distance_star_curve.tr
 @onready var vacuum_noise: AudioStreamPlayer2D = $VacuumNoise
 @onready var star_collect_sound: AudioStreamPlayer2D = $StarCollectSound
 @onready var star_explode_sound: AudioStreamPlayer2D = $StarExplodeSound
+@onready var tutorial: Sprite2D = $Sprite/Tutorial
 
 var move_speed := MOVE_SPEED
 var _affected_stars: Array[SpaceFloater] = []
@@ -31,6 +32,10 @@ var state := States.MOVABLE
 
 func _ready() -> void:
 	collection_area.area_entered.connect(_star_entered)
+	var t := create_tween()
+	t.tween_interval(3.0)
+	t.tween_property(tutorial, "modulate:a", 0.0, 2.0)
+	t.tween_callback(tutorial.queue_free)
 
 
 func _physics_process(delta: float) -> void:
