@@ -1,11 +1,12 @@
 extends Node
 
-const STARS_PER_LEVEL := 400
 
 # this is used to save how many stars should still be in a region.
 # regions load their desired star generation counts from here.
 var remaining_stars := {}
 
+var stars_per_level := 10
+var total_stars_vacuumed := 0 # updated in zen mode only
 var stars_vacuumed := 0
 
 var ui_layer: UI
@@ -30,7 +31,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func check_star_completion() -> void:
-	if stars_vacuumed >= STARS_PER_LEVEL:
+	if stars_vacuumed >= stars_per_level:
 		regions.cutscene.play()
 		if challenger:
 			challenger.end_challenge()

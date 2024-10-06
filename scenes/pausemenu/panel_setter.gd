@@ -21,7 +21,7 @@ func call_panel(gameover = false) -> void:
 	if (!game_over_panel.visible):
 		if (gameover): #If the game ends
 			game_over_panel.visible = true
-			final_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed) + "/" + str(GLOBAL.STARS_PER_LEVEL)
+			final_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed) + "/" + str(GLOBAL.stars_per_level)
 			# add to the score display when we're finishing a challenge mode game
 			if GLOBAL.challenger:
 				final_score_label.add_theme_font_size_override("font_size", 72)

@@ -60,6 +60,9 @@ func play() -> void:
 				layer.repeat_times /= NEW_SCALE
 			tw.tween_callback(func():
 				current_vacuum.state = Vacuum.States.MOVABLE
+				GLOBAL.total_stars_vacuumed += GLOBAL.stars_vacuumed
+				GLOBAL.stars_vacuumed = 0
+				regions.process_regions()
 			)
 		)
 	else:

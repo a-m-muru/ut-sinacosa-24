@@ -44,7 +44,7 @@ func display() -> void:
 	
 	score_label.text = "%010.1f" % (score * 10)
 	
-	star_collection_progress.value = float(GLOBAL.stars_vacuumed) / GLOBAL.STARS_PER_LEVEL
+	star_collection_progress.value = float(GLOBAL.stars_vacuumed) / GLOBAL.stars_per_level
 
 
 # format: "hh:mm:ss"

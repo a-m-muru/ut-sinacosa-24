@@ -39,7 +39,7 @@ func create_region(region_pos: Vector2) -> void:
 		new_region.name = str(region_pos)
 		new_region.reg_position = region_pos
 		new_region.global_position = Region.SIZE * region_pos
-		new_region.desired_stars = clampf((GLOBAL.STARS_PER_LEVEL - GLOBAL.stars_vacuumed), 0, 99)
+		new_region.desired_stars = clampf((GLOBAL.stars_per_level - GLOBAL.stars_vacuumed), 0, 99)
 		add_child(new_region)
 		var tw := create_tween()
 		tw.tween_property(new_region, "modulate:a", 1.0, 1.0).from(0.0)
@@ -48,9 +48,13 @@ func create_region(region_pos: Vector2) -> void:
 func _process(delta: float) -> void:
 	var reg_pos := Region.region_position(follow.global_position)
 	if reg_pos != _follow_reg_pos:
-		create_region_neighbours(reg_pos)
 		_follow_reg_pos = reg_pos
-		_process_faraway_regions()
+		process_regions()
+
+
+func process_regions() -> void:
+	create_region_neighbours(_follow_reg_pos)
+	_process_faraway_regions()
 
 
 # erase regions that are far away
