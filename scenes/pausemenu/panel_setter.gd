@@ -23,10 +23,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func call_panel(gameover = false) -> void:
-	if (!game_over_panel.visible):
-		if (gameover): #If the game ends
+	if not game_over_panel.visible:
+		if gameover: #If the game ends
 			game_over_panel.visible = true
-			final_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed) + "/" + str(GLOBAL.stars_per_level)
+			var sc := GLOBAL.stars_vacuumed
+			final_score_label.text = "Stars collected: " + str(sc) + "/" + str(GLOBAL.stars_per_level)
 			# add to the score display when we're finishing a challenge mode game
 			if GLOBAL.challenger:
 				final_score_label.add_theme_font_size_override("font_size", 72)
@@ -34,11 +35,14 @@ func call_panel(gameover = false) -> void:
 				final_score_label.text += "\nFinal Time: " + Challenger.get_time_text(GLOBAL.challenger.time)
 				GLOBAL.challenger.hide()
 		else: #If the player presses the escape key.
-			if (pause_panel.visible):
+			if pause_panel.visible:
 				pause_panel.visible = false
 				get_tree().paused = false
 			else:
-				current_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed)
+				var sc := GLOBAL.stars_vacuumed
+				if GLOBAL.zen_mode:
+					sc += GLOBAL.total_stars_vacuumed
+				current_score_label.text = "Stars collected: " + str(sc)
 				if GLOBAL.challenger:
 					current_score_label.text += "/" + str(GLOBAL.stars_per_level)
 				get_tree().paused = true

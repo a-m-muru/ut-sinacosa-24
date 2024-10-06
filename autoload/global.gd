@@ -18,11 +18,13 @@ var regions: Regions
 var zen_mode := true
 
 var played_once := false
+var run_random: int
 
 
 func reset_counters() -> void:
 	remaining_stars = {}
 	stars_vacuumed = 0
+	run_random = randi()
 
 
 func _unhandled_key_input(event: InputEvent) -> void:

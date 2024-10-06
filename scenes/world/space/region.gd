@@ -27,12 +27,13 @@ func _ready() -> void:
 		add_child(s)
 		# random position in the bounds of the region
 		s.position += (Vector2(randf_range(-SIZE.x/2, SIZE.x/2), randf_range(-SIZE.y/2, SIZE.y/2)))
-	for j in 5:
-		var trash := create_trash()
-		add_child(trash)
-		trash.position += (Vector2(randf_range(-SIZE.x/2, SIZE.x/2), randf_range(-SIZE.y/2, SIZE.y/2)))
+	if reg_position != Vector2.ZERO:
+		for j in 5:
+			var trash := create_trash()
+			add_child(trash)
+			trash.position += (Vector2(randf_range(-SIZE.x/2, SIZE.x/2), randf_range(-SIZE.y/2, SIZE.y/2)))
 	# spawn planets in the centers of some regions
-	if hash(reg_position) % 10 < 6 and reg_position != Vector2.ZERO:
+	if (hash(reg_position) + GLOBAL.run_random) % 10 < 6 and reg_position != Vector2.ZERO:
 		var planet := create_planet()
 		add_child(planet)
 
