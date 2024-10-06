@@ -37,10 +37,13 @@ const COLORS := [
 @onready var glow := $Glow
 @onready var glow_front := $Glow2
 @onready var face: Node2D = $Face
+@onready var visibility_notif: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 
 func _ready() -> void:
 	super()
+	visibility_notif.screen_entered.connect(set_physics_process.bind(true))
+	visibility_notif.screen_exited.connect(set_physics_process.bind(false))
 	blink_timer.timeout.connect(_blink_timer_timeout)
 	mouth.texture = MOUTH_TEXTURES.pick_random()
 	eyes.texture = EYE_TEXTURES.pick_random()

@@ -22,7 +22,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func call_panel(gameover = false) -> void:
-	current_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed)
 	if (!game_over_panel.visible):
 		if (gameover): #If the game ends
 			game_over_panel.visible = true
@@ -38,6 +37,9 @@ func call_panel(gameover = false) -> void:
 				pause_panel.visible = false
 				get_tree().paused = false
 			else:
+				current_score_label.text = "Stars collected: " + str(GLOBAL.stars_vacuumed)
+				if GLOBAL.challenger:
+					current_score_label.text += "/" + str(GLOBAL.stars_per_level)
 				get_tree().paused = true
 				pause_panel.visible = true
 

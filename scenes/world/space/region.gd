@@ -17,6 +17,7 @@ var reg_position := Vector2()
 
 @warning_ignore("integer_division", "narrowing_conversion")
 func _ready() -> void:
+	modulate.a = 0
 	# spawn less stars if some have been collected here
 	if reg_position in GLOBAL.remaining_stars:
 		desired_stars = GLOBAL.remaining_stars[reg_position]
@@ -42,6 +43,7 @@ static func region_position(gpos: Vector2) -> Vector2:
 
 static func create_star() -> Star:
 	var star := STAR.instantiate()
+	star.direction = Vector2(randf(), randf()) * randf_range(-1, 1) * 15
 	return star
 
 

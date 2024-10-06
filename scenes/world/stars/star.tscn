@@ -76,3 +76,6 @@ texture = SubResource("GradientTexture2D_qmhqu")
 [node name="BlinkTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(6.8, 6.7)

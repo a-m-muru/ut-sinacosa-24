@@ -39,6 +39,11 @@ func play() -> void:
 	tw.tween_interval(2.0)
 	tw.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(camera, "zoom", Vector2(1.0 / NEW_SCALE, 1.0 / NEW_SCALE) * 2, 4.0)
+	if GLOBAL.challenger:
+		tw.parallel().tween_property(GLOBAL.challenger, "modulate:a", 0.0, 4.0)
+		tw.set_ease(Tween.EASE_IN)
+	else:
+		tw.set_ease(Tween.EASE_OUT_IN)
 	tw.tween_interval(1.0)
 	# huge vacuum vacuums up small vacuum
 	tw.tween_property(new_vacuum, "global_position", current_vacuum.global_position, 1.0)

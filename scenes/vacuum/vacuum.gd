@@ -80,9 +80,10 @@ func _free_star(star: SpaceFloater) -> void:
 		return
 	if not star in _affected_stars:
 		var tw := create_tween()
+		GLOBAL.stars_vacuumed += 1
+		add_score(star.scale.x)
 		tw.tween_property(star, "scale", Vector2.ZERO, 0.1)
 		tw.tween_callback(star.queue_free)
-		GLOBAL.stars_vacuumed += 1
 
 
 func _affect_stars(delta: float) -> void:
@@ -117,7 +118,6 @@ func _affect_stars(delta: float) -> void:
 	for star in _affected_stars:
 		var star_distance := star.global_position.distance_squared_to(global_position)
 		if star_distance < 20:
-			add_score(star.scale.x)
 			_star_exited(star)
 			_free_star(star)
 			break
