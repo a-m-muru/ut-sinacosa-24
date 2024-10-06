@@ -6,7 +6,7 @@ extends Node
 # regions load their desired star generation counts from here.
 var remaining_stars := {}
 
-var stars_per_level := 10
+var stars_per_level := 400
 var total_stars_vacuumed := 0 # updated in zen mode only
 var stars_vacuumed := 0
 

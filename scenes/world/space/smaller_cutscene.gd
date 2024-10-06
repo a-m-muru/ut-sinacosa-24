@@ -25,6 +25,7 @@ func play() -> void:
 	regions.destroy_children()
 	var tw := create_tween()
 	current_vacuum.state = Vacuum.States.FROZEN
+	current_vacuum.process_particles(false)
 	# spawn a huge vacuum to the side
 	var new_vacuum := VACUUM.instantiate()
 	current_vacuum.add_sibling(new_vacuum)

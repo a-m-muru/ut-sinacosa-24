@@ -1,11 +1,42 @@
-[gd_scene load_steps=8 format=3 uid="uid://b15m1keqts6qx"]
+[gd_scene load_steps=14 format=3 uid="uid://b15m1keqts6qx"]
 
 [ext_resource type="Texture2D" uid="uid://i4weq57vmlk" path="res://scenes/vacuum/imeja.png" id="1_w3syo"]
 [ext_resource type="Script" path="res://scenes/vacuum/vacuum.gd" id="2_fsomt"]
+[ext_resource type="Texture2D" uid="uid://d1ifw7mcqxc5p" path="res://scenes/world/particles/smoke/smoke_1_003.png" id="3_ojfy2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n280o"]
 atlas = ExtResource("1_w3syo")
 region = Rect2(-0.5, -0.5, 151.75, 131.5)
+
+[sub_resource type="Curve" id="Curve_6uafa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m2i7a"]
+width = 64
+curve = SubResource("Curve_6uafa")
+
+[sub_resource type="Curve" id="Curve_ech0f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.592326, 0.65041), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3f2qd"]
+width = 64
+curve = SubResource("Curve_ech0f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tbeob"]
+particle_flag_disable_z = true
+angle_min = -158.9
+angle_max = 225.7
+spread = 180.0
+initial_velocity_max = 46.36
+angular_velocity_min = -98.54
+angular_velocity_max = 63.58
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_3f2qd")
+alpha_curve = SubResource("CurveTexture_m2i7a")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sqvqb"]
 radius = 133.094
@@ -28,6 +59,14 @@ show_behind_parent = true
 position = Vector2(-3, -54)
 texture = SubResource("AtlasTexture_n280o")
 offset = Vector2(1.015, 0)
+
+[node name="Particles" type="GPUParticles2D" parent="Sprite"]
+show_behind_parent = true
+position = Vector2(-49, 47)
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_tbeob")
+texture = ExtResource("3_ojfy2")
+lifetime = 2.0
 
 [node name="CollectionArea" type="Area2D" parent="."]
 collision_layer = 0

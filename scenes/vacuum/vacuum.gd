@@ -19,6 +19,7 @@ const DISTANCE_STAR_CURVE := preload("res://scenes/vacuum/distance_star_curve.tr
 @onready var collection_area: Area2D = $"CollectionArea"
 @onready var vacuum_suck_shape: CircleShape2D = $CollectionArea/CollisionShape2D.shape
 @onready var sprite: Sprite2D = $Sprite
+@onready var particles: GPUParticles2D = $Sprite/Particles
 
 var move_speed := MOVE_SPEED
 var _affected_stars: Array[SpaceFloater] = []
@@ -49,6 +50,8 @@ func _physics_process(delta: float) -> void:
 				velocity = velocity.move_toward(input * move_speed, delta * ACCEL)
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, delta * DECEL)
+				
+			process_particles()
 	
 			move_and_slide()
 	
@@ -136,3 +139,10 @@ func add_score(amount: float) -> void:
 	if not GLOBAL.challenger:
 		return
 	GLOBAL.challenger.add_score(amount)
+
+
+func process_particles(ifreal := true) -> void:
+	if not ifreal:
+		particles.amount_ratio = 0
+		return
+	particles.amount_ratio = velocity.length_squared() / (SPRINT_SPEED**2)
